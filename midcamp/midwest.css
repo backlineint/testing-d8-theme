@@ -12,6 +12,14 @@ body {
   color: #000;
 }
 
+.reveal section {
+  background-color: rgba(255,255,255,.70);
+}
+
+.reveal .slides > section, .reveal .slides > section > section {
+  padding: 20px 10px;
+}
+
 .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
   letter-spacing: normal;
   color: #000;
@@ -20,16 +28,14 @@ body {
   word-wrap: break-word; }
 
 .reveal a {
-  color: #dc0a21;
-  padding: 0 .25em;
-  background-color: rgba(234,248,251,.65);
+  color: #096f8f;
   text-decoration: none;
   -webkit-transition: color 0.15s ease;
   -moz-transition: color 0.15s ease;
   transition: color 0.15s ease; }
 
 .reveal a:hover {
-  color: #096f8f;
+  color: #dc0a21;
   text-shadow: none;
   border: none; }
 
