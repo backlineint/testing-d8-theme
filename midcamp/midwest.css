@@ -22,14 +22,14 @@ body {
 .reveal a {
   color: #dc0a21;
   padding: 0 .25em;
-  background-color: rgba(234,248,251,.5);
+  background-color: rgba(234,248,251,.65);
   text-decoration: none;
   -webkit-transition: color 0.15s ease;
   -moz-transition: color 0.15s ease;
   transition: color 0.15s ease; }
 
 .reveal a:hover {
-  color: #ed808b;
+  color: #096f8f;
   text-shadow: none;
   border: none; }
 
