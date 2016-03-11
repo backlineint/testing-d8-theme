@@ -83,14 +83,502 @@
         </section>
 
         <section>
-          <h1>Put your slides here</h1>
-          <p>
-            We recommend your last two slides are:
-          </p>
-          <ol>
-            <li>reminder about the sprint</li>
-            <li>slide with feedback link</li>
-          </ol>
+          <section>
+            <h1>So what exactly is Style Guide Driven Development anyway?</h1>
+          </section>
+          <section>
+            <h2>Decoupling of front and back end development</h2>
+            <aside class="notes">
+              * Not going to go into full details here, many other great presentations on this topic.<br />
+              * Using a living style guide to decouple front and back end development.<br />
+              * If you've done front end development you're probably familiar with squeezing theming in at the end.
+            </aside>
+          </section>
+          <section>
+            <h2>Theming doesn't have to come last</h2>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section data-background="images/finish_success.jpg">
+            <h2>Perception</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <aside class="notes">
+              * Re-center this via css
+            </aside>
+          </section>
+          <section data-background="images/finish_fail.jpg">
+            <h2>Reality</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <aside class="notes">
+              * Re-center this via css
+            </aside>
+          </section>
+          <section data-background="images/finish_shell.png">
+            <h2>(Mario Kart Version)</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <aside class="notes">
+              * Re-center this via css
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>The Living Style Guide</h1>
+          </section>
+          <section data-background="images/us_style_guide.png">
+            <aside class="notes">
+              * Think about converting this to a video.
+            </aside>
+          </section>
+          <section data-background="images/us_style_guide_search.png">
+          </section>
+          <section>
+            <h2>A Living Style Guide</h2>
+            <ol>
+              <li class="fragment">Is modular and re-usable</li>
+              <li class="fragment">Uses real world css and markup</li>
+              <li class="fragment">Is always kept up to date</li>
+              <li class="fragment">Is testable</li>
+            </ol>
+            <aside class="notes">
+              Part of 'always up to date' is 'automated'. I think all this leads to something testable.
+            </aside>
+          </section>
+          <section>
+            <h1>Modular and Re-Usable</h1>
+          </section>
+          <section>
+            <img src="images/design_systems.png" />
+            <aside class="notes">
+              * Quote inception
+            </aside>
+          </section>
+          <section>
+            <img src="images/atomic_design.png" />
+          </section>
+          <section>
+            <h1>Real world css and markup</h1>
+            <p>Your style guide should use the actual css and markup that is in production on your site.</p>
+            <p class="fragment">(Well, as much as possible...)</p>
+          </section>
+          <section>
+            <h1>Always up to date</h1>
+            <p>Generate your style guide automagically.</p>
+            <p>When you update your code, update your documentation.</p>
+          </section>
+          <section>
+            <h1>Testable</h1>
+          </section>
+          <section>
+            <h2>Has this ever happened to you?</h2>
+            <img src="images/infomercial.gif" />
+          </section>
+          <section>
+            <p>One tiny css change causes a regression deep in the outer reaches of your site.</p>
+            <p>(And, it goes unnoticed for lord knows how long...)</p>
+          </section>
+          <section>
+            <h2>What if your style guide could tell you when you blew it?</h2>
+          </section>
+          <section>
+            <h2>Visual Regression Testing</h2>
+            <img src="images/visual_regression_diff.png" />
+            <aside class="notes">
+              * Source: https://css-tricks.com/visual-regression-testing-with-phantomcss/
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Drupal 7</h1>
+          </section>
+          <section>
+            <h2>Millions of years ago when Drupal 7 was a thing, what tools did we have to help with our style guides?</h2>
+          </section>
+          <section data-background="images/style_guide_module.png">
+            <aside class="notes">
+              * I feel like the style guide module gets a bad rap, but it is super useful.
+            </aside>
+          </section>
+          <section data-background-video="videos/style_guide_demo.m4v">
+            <aside class="notes">
+              * Todo: Edit and compress this video, probably cutting down length a bit.
+              * Todo: Update reveal.js to allow for video looping.
+            </aside>
+          </section>
+          <section>
+            <h2>Style Guide API</h2>
+            <p>hook_styleguide()</p>
+            <p>hook_styleguide_alter()</p>
+          </section>
+          <section>
+            <img src="images/dpc_styleguide.png" />
+            <aside class="notes">
+              * Todo: Resize screenshot.
+              * Todo: Maybe come up with better markup examples.
+            </aside>
+          </section>
+          <section>
+            <img src="images/dpc_categories.png" />
+            <aside class="notes">
+              * Todo: Resize screenshot.
+            </aside>
+          </section>
+          <section>
+            <h2>hook_styleguide()</h2>
+                    <pre><code data-trim>
+                      /**
+                      * Implements hook_styleguide().
+                      */
+                      function my_module_styleguide() {
+                      $items = array();
+
+                      $items['color_primary'] = array(
+                      'title' => t('02-1) Colors, Primary'),
+                      'group' => t('1) Approved'),
+                      'content' => '<div class="color-block primary-background"></div>'
+                      );
+
+                      $items['button_primary'] = array(
+                      'title' => t('01-1) Buttons, Primary'),
+                      'group' => t('1) Approved'),
+                      'content' => markup_button_link('btn-primary', 'Donate Now')
+                      );
+
+                      return $items;
+                      }
+                    </code></pre>
+            <aside class="notes">
+              * Todo: See if I can re-format so I can see all markup on one screen.
+            </aside>
+          </section>
+          <section>
+            <h2>Custom Helpers for Markup</h2>
+                    <pre><code data-trim>
+                      /**
+                      *  Link Button
+                      *
+                      * @param $classes
+                      *   STRING additional classes to be applied to button link
+                      * @param $text
+                      *   STRING link text
+                      */
+                      function markup_button_link($classes, $text) {
+                      $output = '<a class="btn ' . $classes . '" href="#" role="button">' . $text . '</a>';
+
+                      return $output;
+                      }
+                    </code></pre>
+            <aside class="notes">
+              * Todo: See if I can re-format so I can see all markup on one screen.
+            </aside>
+          </section>
+          <section>
+            <h2>hook_styleguide_alter()</h2>
+                    <pre><code data-trim>
+                      /**
+                      * Implements hook_styleguide_alter().
+                      */
+                      function my_module_styleguide_alter(&$items) {
+                      // Promote default styleguide items to review sections
+                      $items['headings']['title'] = t('02-4) Headings');
+                      $items['headings']['group'] = t('1) Approved');
+                      $items['text']['title'] = t('02-5) Text Block');
+                      $items['text']['group'] = t('2) In Progress');
+                      }
+                    </code></pre>
+            <aside class="notes">
+              * Todo: Fix code highlighting here.
+            </aside>
+          </section>
+          <section>
+            <h2>Style Guide File Snippets Module</h2>
+            <p>Extend style guide with snippets of markup from your codebase.</p>
+            <ol>
+              <li>.html format</li>
+              <li>.inc format</li>
+            </ol>
+          </section>
+          <section>
+            <h2>.html Format</h2>
+            <p>Path: SNIPPET_DIRECTORY/Navigation/Pill Navigation.html</p>
+                    <pre><code data-trim>
+                      <ul class="nav nav-pills" role="tablist">
+                        <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+                        <li role="presentation"><a href="#">Profile</a></li>
+                        <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+                      </ul>
+                    </code></pre>
+            <img src="images/html_snippet.png" />
+            <aside class="notes">
+              * Try to extend the width of the code snippet.
+            </aside>
+          </section>
+          <section>
+            <h2>.inc Format</h2>
+            <p>Returns an array in hook_styleguide() format</p>
+                    <pre><code data-trim>
+                      <\?php
+                      return array(
+                      'title' => t('Pill Navigation'),
+                      'group' => t('Navigation'),
+                      'content' => '<ul class="nav nav-pills" role="tablist">
+                      <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+                      <li role="presentation"><a href="#">Profile</a></li>
+                      <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+                    </ul>'
+                      );
+                    </code></pre>
+            <aside class="notes">
+              * Find a way to escape the php tag so it formats correctly.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Drupal 8</h1>
+            <aside class="notes">
+              Better components:
+              * SMACCS
+              * Everything in templates - Twig and twig tricks like blocks and extends.
+              * No style guide!
+            </aside>
+          </section>
+          <section>
+            <h2>Drupal 8 wants you to build better themes</h2>
+            <ul>
+              <li>Twig templating system.</li>
+              <li>SMACSS-style CSS Coding Standards.</li>
+            </ul>
+            <aside class="notes">
+              * Maybe add an example of adding classes.
+            </aside>
+          </section>
+          <section>
+            <h2>Twig</h2>
+            <ul>
+              <li>Greater seperation between logic and display</li>
+              <ul>
+                <li>More markup in templates, less in theme and pre-process functions.</li>
+              </ul>
+              <li>Easier to create cleaner and more logical markup</li>
+              <ul>
+                <li>Classy and Stable base themes.</li>
+              </ul>
+            </ul>
+            <aside class="notes">
+              * Feel like I probably need more varied examples here.
+            </aside>
+          </section>
+          <section>
+            <h2>Twig Extends</h2>
+            <p>field.html.twig</p>
+            <img src="images/field_twig.png" />
+          </section>
+          <section>
+            <h2>Twig Blocks</h2>
+            <p>Custom field.html.twig</p>
+            <img src="images/field_twig_block.png" />
+          </section>
+          <section>
+            <h2>Twig Extends</h2>
+            <p>field--field-hero-header.html.twig</p>
+            <img src="images/field_extends.png" />
+          </section>
+          <section>
+            <h2>SMACSS</h2>
+            <ol>
+              <li>Base — CSS reset/normalize plus HTML element styling.</li>
+              <li>Layout — macro arrangement of a web page, including any grid systems.</li>
+              <li>Component — discrete, reusable UI elements.</li>
+              <li>State — styles that deal with client-side changes to components.</li>
+              <li>Theme — purely visual styling (“look-and-feel”) for a component.</li>
+            </ol>
+            <aside class="notes">
+              * Scalable and Modular Architecture for CSS
+              * More of a style guide than a framework.
+              * SMACCS actually uses module rather than component
+              * Maybe have some class naming examples here?
+            </aside>
+          </section>
+          <section>
+            <h2>No Style Guide Module (Yet)</h2>
+            <p>So what do we do?</p>
+          </section>
+          <section>
+            <h2>Style Guide Generators to the Rescue</h2>
+            <p>Many options</p>
+            <ul>
+              <li>Pattern Lab</li>
+              <li>Stylex</li>
+              <li>KSS</li>
+            </ul>
+            <aside class="notes">
+              * Stylex uses Twig, which is nice.
+            </aside>
+          </section>
+          <section>
+            <h2>KSS</h2>
+            <ul>
+              <li>Human readable documentation syntax</li>
+              <li>Any flavor of CSS</li>
+              <li>Node JS implementation</li>
+              <li>Grunt integration</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Install</h2>
+            <p>npm install kss --save-dev</p>
+            <p>npm install grunt-kss --save-dev</p>
+          </section>
+          <section>
+            <h2>Example</h2>
+            <img src="images/solutions_screenshot.png" />
+          </section>
+          <section>
+            <h2>KSS Syntax</h2>
+                    <pre><code data-trim>
+                      // Solution Teaser
+                      //
+                      // A teaser for solutions taxonomy as displayed on the homepage
+                      //
+                      // Markup: kss_markup/solution_teaser.html
+                      //
+                      // Style Guide: Solutions.Teaser
+                      .view-solutions .views-row {
+                      .views-field-field-category-icon .col-xs-3 {
+                      padding: 3%;
+                      border-radius: 50%;
+                      background-color: $gray_light;
+                      img {
+                      @extend .img-responsive;
+                      }
+                      }
+                      }
+                    </code></pre>
+            <aside class="notes">
+              * Maybe add a view of the markup?
+            </aside>
+          </section>
+          <section>
+            <h2>Build Style Guide</h2>
+            <p>grunt kss</p>
+            <p>or:</p>
+            <p>./node_modules/.bin/kss-node --source sass --destination styleguide --css css/style.css</p>
+            <aside class="notes">
+              * Some sort of view into the grunt config would probably be good here...
+            </aside>
+          </section>
+          <section>
+            <img src="images/styleguide_output.png" />
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Testing Your Style Guide and Theme</h1>
+            <aside class="notes">
+              * Behat
+              * Wraith
+              * Phantom
+            </aside>
+          </section>
+          <section>
+            <h2>Behat</h2>
+            <p>Behavior Driven Development Framework</p>
+                    <pre><code data-trim>
+                      @javascript
+                      Scenario: Footer style matches style guide
+                      Given I am an anonymous user
+                      And I am on "assessments/practice-assessments"
+                      When I am browsing using a "phone"
+                      Then "body" should have a "background-color" css value of "rgb(112, 84, 125)"
+                      And "#page" should have a "background-color" css value of "rgb(255, 255, 255)"
+                      And "footer" should have a "padding-top" css value of "50px"
+                      And "footer" should have a "padding-bottom" css value of "30px"
+                    </code></pre>
+          </section>
+          <section>
+            <h2>Wraith</h2>
+            <p>Screenshot Comparison Tool</p>
+            <img src="images/wraith_single.png" />
+          </section>
+          <section>
+            <img src="images/wraith_diff.png" />
+          </section>
+          <section>
+            <h2>Phantom CSS</h2>
+            <p>CSS Regression Testing</p>
+            <ul>
+              <li>PhantomJS/SlimerJS - Headless Browser</li>
+              <li>CasperJS - Navigation and Scripting</li>
+              <li>ResembleJS - Screenshot Comparison</li>
+            </ul>
+            <p>Strengths: interactivity, easier to target components.</p>
+          </section>
+          <section>
+            <h2>Target By Selector</h2>
+            <img src="images/phantom_failure.png" />
+                    <pre><code data-trim>
+                      casper.thenOpen(phantom.rootUrl)
+                      .then(function() {
+                      this.evaluate(function() {
+                      // Evaluate any pre-test js here
+                      });
+                      })
+                      .then(function() {
+                      phantomcss.screenshot('.view-solutions .views-row:first-child', 'Solution Teaser');
+                      });
+                    </code></pre>
+          </section>
+          <section>
+            <h2>Install</h2>
+            <p>npm install phantomcss --save-dev</p>
+            <p>or:</p>
+            <p>npm install @micahgodbolt/grunt-phantomcss --save-dev</p>
+          </section>
+          <section>
+            <h1>Demo</h1>
+          </section>
+        </section>
+
+        <section>
+          <section>
+            <h1>Chasing the dream?</h1>
+            <aside class="notes">
+              * I'm not even doing all this stuff myself
+              * Big desire is to be using twig in this process.
+              * And dream is to be able to get the 'real' drupal markup with dummy content.
+            </aside>
+          </section>
+          <section>
+            <ul>
+              <li>Stop cutting corners in workflow.</li>
+              <li>How can we get closer to real up to date Drupal markup in Style Guide?</li>
+            </ul>
+          </section>
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
         </section>
 
         <section>
