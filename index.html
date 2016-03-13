@@ -19,14 +19,16 @@
 
 <!--
     MidCamp theme:
--->
 		<link rel="stylesheet" href="midcamp/midwest.css" id="theme">
+-->
+
+    <link rel="stylesheet" href="midcamp/teal-dark.css" id="theme">
+
 <!--
     Other theme variants:
 
-    <link rel="stylesheet" href="midcamp/black.css" id="theme">
     <link rel="stylesheet" href="midcamp/teal-light.css" id="theme">
-    <link rel="stylesheet" href="midcamp/teal-dark.css" id="theme">
+    <link rel="stylesheet" href="midcamp/black.css" id="theme">
 -->
 
 		<!-- Code syntax highlighting -->
@@ -56,7 +58,7 @@
           <p class="logo__site-name">#MidCamp</p>
         </div>
         <div class="session--info">
-          <p class="session__title">Chasing The Dream of Style Guide Driven Development in Drupal 8 <span class="seperator">&nbsp;/&nbsp;</span></p>
+          <p class="session__title">Chasing The Dream of Style Guide Driven Development <span class="seperator">&nbsp;/&nbsp;</span></p>
           <p class="session__presenter">Brian Perry</p>
         </div>
       </div>
@@ -89,18 +91,20 @@
           <section>
             <h2>Decoupling of front and back end development</h2>
             <aside class="notes">
-              * Not going to go into full details here, many other great presentations on this topic.<br />
-              * Using a living style guide to decouple front and back end development.<br />
-              * If you've done front end development you're probably familiar with squeezing theming in at the end.
+              * SGDD is an approach to development that de-couples front end and back end development.<br />
+              * Look and feel can be developed before functionality actually exists.<br />
+              * Style guide components can be applied to newly developed functionality right away.
             </aside>
           </section>
           <section>
             <h2>Theming doesn't have to come last</h2>
             <aside class="notes">
+              * I'm sure many have experienced this - your site is built out, and then at the end we try to tack on theming.<br />
             </aside>
           </section>
-          <section data-background="images/finish_success.jpg">
+          <section data-background="images/finish_success.jpg" alt="Runner Triumphantly Crossing Finish Line">
             <h2>Perception</h2>
+            <!-- Todo - Re: Center with CSS -->
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
@@ -108,11 +112,12 @@
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
             <aside class="notes">
-              * Re-center this via css
+              * We think it will look like this - tack on styling at the end, and the finished product will look great.
             </aside>
           </section>
-          <section data-background="images/finish_fail.jpg">
+          <section data-background="images/finish_fail.jpg" alt="Runners tripping on hurdles">
             <h2>Reality</h2>
+            <!-- Todo - Re: Center with CSS -->
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
@@ -120,11 +125,12 @@
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
             <aside class="notes">
-              * Re-center this via css
+              * But in reality it is more like this - some things dont get finished, and it is can be ugly and painful.
             </aside>
           </section>
-          <section data-background="images/finish_shell.png">
+          <section data-background="images/finish_shell.png" alt="Wario about to get hit with blue shell">
             <h2>(Mario Kart Version)</h2>
+            <!-- Todo - Re: Center with CSS -->
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
@@ -132,7 +138,7 @@
             <h2>&nbsp;</h2>
             <h2>&nbsp;</h2>
             <aside class="notes">
-              * Re-center this via css
+              * Or the Mario Kart version - you're just about to cross the finish line, but you get hit with a blue shell.
             </aside>
           </section>
         </section>
@@ -140,67 +146,89 @@
         <section>
           <section>
             <h1>The Living Style Guide</h1>
-          </section>
-          <section data-background="images/us_style_guide.png">
             <aside class="notes">
-              * Think about converting this to a video.
+              * Key component of SGDD is the creation and maintenence of a living style guide.
             </aside>
           </section>
-          <section data-background="images/us_style_guide_search.png">
+          <section data-background="images/us_style_guide.png" alt="US Web Design Standards Style Guide">
+            <aside class="notes">
+              * US Web Design Standards Style Guide.<br />
+              * Starbucks was another early example - http://www.starbucks.com/static/reference/styleguide/<br />
+              * Consider converting this to a video.
+            </aside>
+          </section>
+          <section data-background="images/us_style_guide_search.png" alt="US Web Design Standards Search Bar Component">
+            <aside class="notes">
+              * Search bar component
+            </aside>
           </section>
           <section>
             <h2>A Living Style Guide</h2>
             <ol>
               <li class="fragment">Is modular and re-usable</li>
-              <li class="fragment">Uses real world css and markup</li>
+            </ol>
+          </section>
+          <section>
+            <img src="images/design_systems.png" alt="Atomic Design - design systems of components, not pages" />
+            <aside class="notes">
+              * Atomic Design is a methodology to construct design systems created by Brad Frost.<br />
+              * Design systems of components, not pages.
+            </aside>
+          </section>
+          <section>
+            <img src="images/atomic_design.png" alt="Atomic Design Overview" />
+            <aside class="notes">
+              * Atoms - basic html elements<br />
+              * Molecules - small combinations of html elements - search box for example.<br />
+              * Organisms - more complex components of molecules - header for example.<br />
+              * Templates - a full page or screen made up of components.<br />
+              * Page - An instance of a template with content in it.  Don't design individual pages.<br />
+              * The methodolgy doesn't matter to me as much as the idea of re-usable modular components.
+            </aside>
+          </section>
+          <section>
+            <h2>A Living Style Guide</h2>
+            <ol>
+              <li>Is modular and re-usable</li>
+              <li>Uses real world css and markup</li>
               <li class="fragment">Is always kept up to date</li>
               <li class="fragment">Is testable</li>
             </ol>
             <aside class="notes">
-              Part of 'always up to date' is 'automated'. I think all this leads to something testable.
+              * The style guide should use the actual css and markup that is in production on your site.<br />
+              * As much as possible at least. The CSS should be easy, but in some cases the markup can be difficult.<br />
+              * Generate your style guide automatagically - we'll look at a few approaches.<br />
+              * Make it part of your workflow - when you update your code, update your documentation.<br />
+              * Testable - SGDD sets up a framework that makes it possible to test for visual regressions.
             </aside>
-          </section>
-          <section>
-            <h1>Modular and Re-Usable</h1>
-          </section>
-          <section>
-            <img src="images/design_systems.png" />
-            <aside class="notes">
-              * Quote inception
-            </aside>
-          </section>
-          <section>
-            <img src="images/atomic_design.png" />
-          </section>
-          <section>
-            <h1>Real world css and markup</h1>
-            <p>Your style guide should use the actual css and markup that is in production on your site.</p>
-            <p class="fragment">(Well, as much as possible...)</p>
-          </section>
-          <section>
-            <h1>Always up to date</h1>
-            <p>Generate your style guide automagically.</p>
-            <p>When you update your code, update your documentation.</p>
-          </section>
-          <section>
-            <h1>Testable</h1>
           </section>
           <section>
             <h2>Has this ever happened to you?</h2>
-            <img src="images/infomercial.gif" />
+            <img src="images/infomercial.gif" alt="Infomercial Saran Wrap Fail"/>
+            <aside class="notes">
+              * So many fun options for infomercial fail gifs...
+            </aside>
           </section>
           <section>
             <p>One tiny css change causes a regression deep in the outer reaches of your site.</p>
             <p>(And, it goes unnoticed for lord knows how long...)</p>
-          </section>
-          <section>
-            <h2>What if your style guide could tell you when you blew it?</h2>
+            <aside class="notes">
+              * Maybe it's an honest mistake<br />
+              * Maybe someone new to the codebase is working in the theme layer and doesn't have the context you do.
+            </aside>
           </section>
           <section>
             <h2>Visual Regression Testing</h2>
-            <img src="images/visual_regression_diff.png" />
+            <h3>allows your style guide tell you when you blew it</h3>
             <aside class="notes">
-              * Source: https://css-tricks.com/visual-regression-testing-with-phantomcss/
+              * We've got all the tools we need for some life saving visual regression testing.
+            </aside>
+          </section>
+          <section>
+            <img src="images/visual_regression_diff.png" alt="Visual Regresison Diff for Teaser"/>
+            <aside class="notes">
+              * This is an example of a screenshot of a screenshot diff after a change in style. We'll walk all the way getting this process up on its feet.<br />
+              * Image Source: https://css-tricks.com/visual-regression-testing-with-phantomcss/
             </aside>
           </section>
         </section>
