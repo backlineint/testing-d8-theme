@@ -5,3 +5,12 @@
 .white h2 {
   color: white;
 }
+.fix-margin h2 {
+  margin-top: 25px !important;
+}
+.fix-overflow {
+  left: -2%;
+}
+.fix-overflow img {
+  max-width: 85% !important;
+}

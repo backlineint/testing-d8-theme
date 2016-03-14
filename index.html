@@ -91,7 +91,7 @@
           <section class="transparent">
             <h1>So what exactly is Style Guide Driven Development anyway?</h1>
           </section>
-          <section class="transparent">
+          <section class="fix-margin">
             <h2>Decoupling of front and back end development</h2>
             <aside class="notes">
               * SGDD is an approach to development that de-couples front end and back end development.<br />
@@ -99,7 +99,7 @@
               * Style guide components can be applied to newly developed functionality right away.
             </aside>
           </section>
-          <section class="transparent">
+          <section class="fix-margin">
             <h2>Theming doesn't have to come last</h2>
             <aside class="notes">
               * I'm sure many have experienced this - your site is built out, and then at the end we try to tack on theming.<br />
@@ -153,14 +153,14 @@
               * Key component of SGDD is the creation and maintenence of a living style guide.
             </aside>
           </section>
-          <section data-background="images/us_style_guide.png" alt="US Web Design Standards Style Guide">
+          <section class="transparent" data-background="images/us_style_guide.png" alt="US Web Design Standards Style Guide">
             <aside class="notes">
               * US Web Design Standards Style Guide.<br />
               * Starbucks was another early example - http://www.starbucks.com/static/reference/styleguide/<br />
               * Consider converting this to a video.
             </aside>
           </section>
-          <section data-background="images/us_style_guide_search.png" alt="US Web Design Standards Search Bar Component">
+          <section class="transparent" data-background="images/us_style_guide_search.png" alt="US Web Design Standards Search Bar Component">
             <aside class="notes">
               * Search bar component
             </aside>
@@ -213,8 +213,8 @@
             </aside>
           </section>
           <section>
-            <p>One tiny css change causes a regression deep in the outer reaches of your site.</p>
-            <p>(And, it goes unnoticed for lord knows how long...)</p>
+            <p>One tiny css change causes a regression deep in the outer reaches of your site</p>
+            <p>(and, it goes unnoticed for lord knows how long)</p>
             <aside class="notes">
               * Maybe it's an honest mistake<br />
               * Maybe someone new to the codebase is working in the theme layer and doesn't have the context you do.
@@ -222,7 +222,7 @@
           </section>
           <section>
             <h2>Visual Regression Testing</h2>
-            <h3>allows your style guide tell you when you blew it</h3>
+            <h4>allows your style guide tell you when you blew it</h4>
             <aside class="notes">
               * We've got all the tools we need for some life saving visual regression testing.
             </aside>
@@ -237,105 +237,117 @@
         </section>
 
         <section>
-          <section>
+          <section class="transparent">
             <h1>Drupal 7</h1>
           </section>
-          <section>
-            <h2>Millions of years ago when Drupal 7 was a thing, what tools did we have to help with our style guides?</h2>
-          </section>
-          <section data-background="images/style_guide_module.png">
+          <section class="fix-margin">
+            <!--<h1>Drupal 7</h1>-->
+            <h2>Millions of years ago when Drupal 7 was a thing...</h2>
             <aside class="notes">
-              * I feel like the style guide module gets a bad rap, but it is super useful.
+              * D7 has some tools that help you qickly create a style guide
             </aside>
           </section>
-          <section data-background-video="videos/style_guide_demo.m4v">
+          <section class="transparent" data-background="images/style_guide_module.png" alt="Style Guide Module Project Page">
             <aside class="notes">
-              * Todo: Edit and compress this video, probably cutting down length a bit.
-              * Todo: Update reveal.js to allow for video looping.
+              * The style guide module lets you instantly preview common markup and drupalisims.
+            </aside>
+          </section>
+          <section class="transparent" data-background-video="videos/style_guide_demo.m4v" data-background-video-loop alt="Style Guide Module Demo Video">
+            <aside class="notes">
+              * Here's a demo - a table of links and just a long scrolling page of examples.<br />
+              * Quick way to see the things you haven't styled or missed.<br />
+              * I feel like the style guide module Doesn't get the credit it deserves.<br />
+              * TODO: Add additional encodings for non-webkit browsers.
             </aside>
           </section>
           <section>
             <h2>Style Guide API</h2>
             <p>hook_styleguide()</p>
             <p>hook_styleguide_alter()</p>
-          </section>
-          <section>
-            <img src="images/dpc_styleguide.png" />
             <aside class="notes">
-              * Todo: Resize screenshot.
-              * Todo: Maybe come up with better markup examples.
+              * The style guide API implements a couple of useful hooks.
             </aside>
           </section>
-          <section>
-            <img src="images/dpc_categories.png" />
+          <section class="fix-overflow">
+            <img src="images/dpc_styleguide.png" alt="Customized Style Guide Components" />
             <aside class="notes">
-              * Todo: Resize screenshot.
+              * Here is an example of custom button and color swatches included in the style guide.<br />
+              * Todo - resize screenshot so I don't have to use CSS fixes.
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/dpc_categories.png" alt="Customized Style Guide Categories" />
+            <aside class="notes">
+              * You can re-group components into categories like approved and in-progress.<br />
+              * Todo - resize screenshot so I don't have to use CSS fixes.
             </aside>
           </section>
           <section>
             <h2>hook_styleguide()</h2>
-                    <pre><code data-trim>
-                      /**
-                      * Implements hook_styleguide().
-                      */
-                      function my_module_styleguide() {
-                      $items = array();
+            <pre><code data-trim>
+function my_module_styleguide() {
+  $items = array();
 
-                      $items['color_primary'] = array(
-                      'title' => t('02-1) Colors, Primary'),
-                      'group' => t('1) Approved'),
-                      'content' => '<div class="color-block primary-background"></div>'
-                      );
+  $items['color_primary'] = array(
+    'title' => t('02-1) Colors, Primary'),
+    'group' => t('1) Approved'),
+    'content' => '<div class="color-block primary-background"></div>'
+  );
 
-                      $items['button_primary'] = array(
-                      'title' => t('01-1) Buttons, Primary'),
-                      'group' => t('1) Approved'),
-                      'content' => markup_button_link('btn-primary', 'Donate Now')
-                      );
+  $items['button_primary'] = array(
+    'title' => t('01-1) Buttons, Primary'),
+    'group' => t('1) Approved'),
+    'content' => markup_button_link('btn-primary', 'Donate Now')
+  );
 
-                      return $items;
-                      }
-                    </code></pre>
+  return $items;
+}
+            </code></pre>
             <aside class="notes">
-              * Todo: See if I can re-format so I can see all markup on one screen.
+              * hook_styleguide() takes an array of styleguide items.<br />
+              * Can specify title and group.<br />
+              * Can include simple markup inline, or use helper functions.
             </aside>
           </section>
           <section>
             <h2>Custom Helpers for Markup</h2>
-                    <pre><code data-trim>
-                      /**
-                      *  Link Button
-                      *
-                      * @param $classes
-                      *   STRING additional classes to be applied to button link
-                      * @param $text
-                      *   STRING link text
-                      */
-                      function markup_button_link($classes, $text) {
-                      $output = '<a class="btn ' . $classes . '" href="#" role="button">' . $text . '</a>';
+            <pre><code data-trim>
+/**
+*  Link Button
+*
+* @param $classes
+*   STRING additional classes to be applied to button link
+* @param $text
+*   STRING link text
+*/
+function markup_button_link($classes, $text) {
+  $output = '<a class="btn ' . $classes . '" href="#" role="button">' . $text . '</a>';
 
-                      return $output;
-                      }
-                    </code></pre>
+  return $output;
+}
+            </code></pre>
+            <p>Style guide also has helper functions like styleguide_lorem(), styleguide_image(), styleguide_pager()</p>
             <aside class="notes">
-              * Todo: See if I can re-format so I can see all markup on one screen.
+              * A helper function for custom button markup<br />
+              * Stylegude also has helper functions for dummy content and Drupal components.
             </aside>
           </section>
           <section>
             <h2>hook_styleguide_alter()</h2>
-                    <pre><code data-trim>
-                      /**
-                      * Implements hook_styleguide_alter().
-                      */
-                      function my_module_styleguide_alter(&$items) {
-                      // Promote default styleguide items to review sections
-                      $items['headings']['title'] = t('02-4) Headings');
-                      $items['headings']['group'] = t('1) Approved');
-                      $items['text']['title'] = t('02-5) Text Block');
-                      $items['text']['group'] = t('2) In Progress');
-                      }
-                    </code></pre>
+            <pre><code data-trim>
+/**
+* Implements hook_styleguide_alter().
+*/
+function my_module_styleguide_alter(&$items) {
+  // Promote default styleguide items to review sections
+  $items['headings']['title'] = t('02-4) Headings');
+  $items['headings']['group'] = t('1) Approved');
+  $items['text']['title'] = t('02-5) Text Block');
+  $items['text']['group'] = t('2) In Progress');
+}
+            </code></pre>
             <aside class="notes">
+              * Can use hook_styleguide_alter to move default style guide elements into custom categories.<br />
               * Todo: Fix code highlighting here.
             </aside>
           </section>
@@ -346,45 +358,50 @@
               <li>.html format</li>
               <li>.inc format</li>
             </ol>
+            <aside class="notes">
+              * Very few people seem to use this module, but it is a nice little shortcut.
+              * Especially useful for someone who doesn't typically work with custom modules.
+            </aside>
           </section>
           <section>
             <h2>.html Format</h2>
             <p>Path: SNIPPET_DIRECTORY/Navigation/Pill Navigation.html</p>
                     <pre><code data-trim>
-                      <ul class="nav nav-pills" role="tablist">
-                        <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
-                        <li role="presentation"><a href="#">Profile</a></li>
-                        <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
-                      </ul>
+<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+</ul>
                     </code></pre>
             <img src="images/html_snippet.png" />
             <aside class="notes">
-              * Try to extend the width of the code snippet.
+              * TODO - Try to extend the width of the code snippet.
             </aside>
           </section>
           <section>
             <h2>.inc Format</h2>
             <p>Returns an array in hook_styleguide() format</p>
                     <pre><code data-trim>
-                      <\?php
-                      return array(
-                      'title' => t('Pill Navigation'),
-                      'group' => t('Navigation'),
-                      'content' => '<ul class="nav nav-pills" role="tablist">
-                      <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
-                      <li role="presentation"><a href="#">Profile</a></li>
-                      <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
-                    </ul>'
-                      );
+<\?php
+  return array(
+  'title' => t('Pill Navigation'),
+  'group' => t('Navigation'),
+  'content' => '<ul class="nav nav-pills" role="tablist">
+  <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
+  <li role="presentation"><a href="#">Profile</a></li>
+  <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
+  </ul>'
+);
                     </code></pre>
             <aside class="notes">
-              * Find a way to escape the php tag so it formats correctly.
+              *
+              * TODO: Find a way to escape the php tag so it formats correctly.
             </aside>
           </section>
         </section>
 
         <section>
-          <section>
+          <section class="transparent">
             <h1>Drupal 8</h1>
             <aside class="notes">
               Better components:
@@ -393,12 +410,12 @@
               * No style guide!
             </aside>
           </section>
-          <section>
+          <section class="fix-margin">
             <h2>Drupal 8 wants you to build better themes</h2>
-            <ul>
+            <!--<ul>
               <li>Twig templating system.</li>
               <li>SMACSS-style CSS Coding Standards.</li>
-            </ul>
+            </ul>-->
             <aside class="notes">
               * Maybe add an example of adding classes.
             </aside>
@@ -417,6 +434,9 @@
             </ul>
             <aside class="notes">
               * Feel like I probably need more varied examples here.
+              * Seperation between logic and view - No PHP in templates
+              * All theme() functions are twig template files.
+              * Preprocess should not be used to add classes (show example of clases being added)
             </aside>
           </section>
           <section>
