@@ -494,22 +494,38 @@ function my_module_styleguide_alter(&$items) {
 					<section>
             <h2>Twig Extends</h2>
             <p>field.html.twig</p>
-            <img src="images/field_twig.png" />
+            <img src="images/field_twig.png" alt="Default field.html.twig"/>
+						<aside class="notes">
+							* Twig allows you to extend templates, which can really help with re-use.<br />
+							* Imagine you want to wrap the field in a different tag. In D7 if you wanted to do this in the template, you'd have to create a copy of the entire field template<br />
+							* Todo: fix image overflow or use code.
+						</aside>
           </section>
           <section>
             <h2>Twig Blocks</h2>
             <p>Custom field.html.twig</p>
-            <img src="images/field_twig_block.png" />
+            <img src="images/field_twig_block.png" alt="Custom Field Template With Blocks" />
+						<aside class="notes">
+							* If you define elements as blocks, you can extend them.<br />
+							* Here I've created a custom version of the field template where I've defined blocks.<br />
+							* Todo: fix image overflow or use code.
+						</aside>
           </section>
           <section>
             <h2>Twig Extends</h2>
             <p>field--field-hero-header.html.twig</p>
-            <img src="images/field_extends.png" />
+            <img src="images/field_extends.png" alt="Extended Field Template"/>
+						<aside class="notes">
+							* Now for a specific field template I can re-define the blocks, not the entire template.
+						</aside>
           </section>
           <section>
-            <h2>No Style Guide Module (Yet)</h2>
-            <p>So what do we do?</p>
-          </section>
+            <h2>Style Guide D8 Port In-Progress</h2>
+            <p>https://www.drupal.org/node/2606942</p>
+						<aside class="notes">
+							* Not ready for prime time, but follow along here (and help out!)
+						</aside>
+					</section>
           <section>
             <h2>Style Guide Generators to the Rescue</h2>
             <p>Many options</p>
@@ -519,7 +535,10 @@ function my_module_styleguide_alter(&$items) {
               <li>KSS</li>
             </ul>
             <aside class="notes">
-              * Stylex uses Twig, which is nice.
+              * A number of style guide generators exist to fill this need.<br />
+							* Pattern Lab follows Atomic Design approach, but doesn't work as easily with Drupal as some other options.<br />
+							* Stylex uses Twig, which is nice.<br />
+							* But I've been using KSS.
             </aside>
           </section>
           <section>
@@ -530,53 +549,71 @@ function my_module_styleguide_alter(&$items) {
               <li>Node JS implementation</li>
               <li>Grunt integration</li>
             </ul>
+            <aside class="notes">
+              * Knyle Style Sheets
+            </aside>
           </section>
           <section>
             <h2>Install</h2>
             <p>npm install kss --save-dev</p>
             <p>npm install grunt-kss --save-dev</p>
           </section>
-          <section>
+          <section class="fix-overflow">
             <h2>Example</h2>
-            <img src="images/solutions_screenshot.png" />
+            <img src="images/solutions_screenshot.png" alt="Homepage Solutions Section" />
+            <aside class="notes">
+              * Let's look at an example, this is the solutions section on the homepage of the recently re-launched Breakthrough site.<br />
+              * It's a view with teasers of taxonomy terms.
+            </aside>
           </section>
           <section>
             <h2>KSS Syntax</h2>
-                    <pre><code data-trim>
-                      // Solution Teaser
-                      //
-                      // A teaser for solutions taxonomy as displayed on the homepage
-                      //
-                      // Markup: kss_markup/solution_teaser.html
-                      //
-                      // Style Guide: Solutions.Teaser
-                      .view-solutions .views-row {
-                      .views-field-field-category-icon .col-xs-3 {
-                      padding: 3%;
-                      border-radius: 50%;
-                      background-color: $gray_light;
-                      img {
-                      @extend .img-responsive;
-                      }
-                      }
-                      }
-                    </code></pre>
+            <pre><code data-trim>
+// Solution Teaser
+//
+// A teaser for solutions taxonomy as displayed on the homepage
+//
+// Markup: kss_markup/solution_teaser.html
+//
+// Style Guide: Solutions.Teaser
+.view-solutions .views-row {
+  .views-field-field-category-icon .col-xs-3 {
+    padding: 3%;
+    border-radius: 50%;
+    background-color: $gray_light;
+    img {
+      @extend .img-responsive;
+    }
+  }
+}
+            </code></pre>
             <aside class="notes">
-              * Maybe add a view of the markup?
+              * Name<br />
+              * Description<br />
+              * Markup - can be file location (html, handlebars, twig in the future) or inline if simple markup<br />
+              * Category in Style Guide<br />
+              * Todo - Cleanup the markup here?
             </aside>
           </section>
           <section>
             <h2>Build Style Guide</h2>
             <p>grunt kss</p>
             <p>or:</p>
-            <p>./node_modules/.bin/kss-node --source sass --destination styleguide --css css/style.css</p>
-            <aside class="notes">
-              * Some sort of view into the grunt config would probably be good here...
-            </aside>
+            <p>kss-node --source sass --destination styleguide --css css/style.css</p>
           </section>
           <section>
-            <img src="images/styleguide_output.png" />
+            <img src="images/styleguide_output.png" alt="KSS Solutions Teaser Output"/>
+            <aside class="notes">
+              * Here's an example of KSS output for the Solutions Teaser<br />
+              * See the element included in the TOC, rendered, and the necessary markup included below.<br />
+            </aside>
           </section>
+          <!--<section>
+            <h2>Demo</h2>
+            <aside class="notes">
+              * Show example of changing the style of H2s and seeing the result reflected in the styleguide.
+            </aside>
+          </section>-->
         </section>
 
         <section>
@@ -654,6 +691,9 @@ function my_module_styleguide_alter(&$items) {
               * I'm not even doing all this stuff myself
               * Big desire is to be using twig in this process.
               * And dream is to be able to get the 'real' drupal markup with dummy content.
+              * Chip in on Stleguide
+              * Chip in on KSS Node Twig
+              * Create something of my own.
             </aside>
           </section>
           <section>
