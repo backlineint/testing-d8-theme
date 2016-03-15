@@ -438,32 +438,58 @@ function my_module_styleguide_alter(&$items) {
 						</code></pre>
 						<p>(From block.html.twig)</p>
 						<aside class="notes">
-							* Todo: Screen shot this.
-							* More classes and markup in templates, less in preprocessor and theme functions. So much easier to find stuff.<br />
+							* More classes and markup in templates, less in preprocessor and theme functions. So much easier to find stuff and create cleaner, well organized markup.<br />
 							* No PHP in templates<br />
-							* Don't preprocess to add classes, use Twig helper function.
+							* Don't preprocess to add classes, use Twig helper function.<br />
+							* Todo: Screen shot this.
 						</aside>
 					</section>
 					<section class="fix-margin">
-						<h2>Tools to Make Modular, Re-usable components</h2>
+						<h2>Tools to Create Modular, Re-usable components</h2>
 					</section>
 					<section>
-						<h2>SMACSS and BEM</h2>
+						<h2>CSS Coding Standards</h2>
+						<img src="images/smaccs.png" style="float:left" alt="Seven CSS Folder Structure"/>
+						<h3>SMACCS</h3>
 						<ol>
-							<li>Base — CSS reset/normalize plus HTML element styling.</li>
-							<li>Layout — macro arrangement of a web page, including any grid systems.</li>
-							<li>Component — discrete, reusable UI elements.</li>
-							<li>State — styles that deal with client-side changes to components.</li>
-							<li>Theme — purely visual styling (“look-and-feel”) for a component.</li>
+							<li>Base</li>
+							<li>Layout</li>
+							<li>Component (aka Module)</li>
+							<li>State</li>
+							<li>Theme (aka Skin)</li>
 						</ol>
 						<aside class="notes">
-							* TODO - Add better representation / folder structure.
-							* TODO - Incorporate BEM (additional slide?)
-							* Scalable and Modular Architecture for CSS
-							* More of a style guide than a framework.
-							* SMACCS actually uses module rather than component
-							* Maybe have some class naming examples here?
+							* Scalable and Modular Architecture for CSS<br />
+							* Approach to organizing your styles<br />
+							* Base — CSS reset/normalize plus HTML element styling.<br />
+							* Layout — macro arrangement of a web page, including any grid systems.<br />
+							* Component — discrete, reusable UI elements. SMACCS calls this modules.<br />
+							* State — styles that deal with client-side changes to components. Typically defined with the component in Drupal.<br />
+							* Theme — purely visual styling (“look-and-feel”) for a component. Drupal sometimes calls this 'skin'<br />
 						</aside>
+					</section>
+					<section>
+						<h2>BEM</h2>
+						<p>Naming convention for components</p>
+						<ul>
+							<li>Block</li>
+							<li>Element</li>
+							<li>Modifier</li>
+						</ul>
+						<pre><code data-trim>
+.block {}
+.block__element {}
+.block--modifier {}
+.block__element--modifier {}
+						</code></pre>
+						<aside class="notes">
+							* Block - object (component) on your website<br />
+							* Element - Sub-component of a block that performs a particular function. Should only make sense within the context of the block<br />
+							* Modifier - Variations of block or element
+						</aside>
+					</section>
+					<section>
+						<img src="images/bem.png" alt="Seven Pager Components"/>
 					</section>
 					<section>
             <h2>Twig Extends</h2>
