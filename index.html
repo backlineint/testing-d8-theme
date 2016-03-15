@@ -168,7 +168,7 @@
           <section>
             <h2>A Living Style Guide</h2>
             <ol>
-              <li class="fragment">Is modular and re-usable</li>
+              <li>Is modular and re-usable</li>
             </ol>
           </section>
           <section>
@@ -220,17 +220,19 @@
               * Maybe someone new to the codebase is working in the theme layer and doesn't have the context you do.
             </aside>
           </section>
-          <section>
+          <!--<section>
             <h2>Visual Regression Testing</h2>
             <h4>allows your style guide tell you when you blew it</h4>
             <aside class="notes">
-              * We've got all the tools we need for some life saving visual regression testing.
+              * Consider cutting this slide
+							* We've got all the tools we need for some life saving visual regression testing.
             </aside>
-          </section>
+          </section>-->
           <section>
             <img src="images/visual_regression_diff.png" alt="Visual Regresison Diff for Teaser"/>
             <aside class="notes">
-              * This is an example of a screenshot of a screenshot diff after a change in style. We'll walk all the way getting this process up on its feet.<br />
+              * This is an example of a screenshot of a screenshot diff after a change in style.<br />
+							* * We've got all the tools we need for some life saving visual regression testing. and we'll walk all the way getting this process up on its feet.<br />
               * Image Source: https://css-tricks.com/visual-regression-testing-with-phantomcss/
             </aside>
           </section>
@@ -254,10 +256,10 @@
           </section>
           <section class="transparent" data-background-video="videos/style_guide_demo.m4v" data-background-video-loop alt="Style Guide Module Demo Video">
             <aside class="notes">
-              * Here's a demo - a table of links and just a long scrolling page of examples.<br />
+              * Here's a demo - a table of links and a long scrolling page of examples.<br />
               * Quick way to see the things you haven't styled or missed.<br />
               * I feel like the style guide module Doesn't get the credit it deserves.<br />
-              * TODO: Add additional encodings for non-webkit browsers.
+              * TODO: Add additional encodings for non-webkit browsers or convert to a gif..
             </aside>
           </section>
           <section>
@@ -403,43 +405,67 @@ function my_module_styleguide_alter(&$items) {
         <section>
           <section class="transparent">
             <h1>Drupal 8</h1>
-            <aside class="notes">
-              Better components:
-              * SMACCS
-              * Everything in templates - Twig and twig tricks like blocks and extends.
-              * No style guide!
-            </aside>
           </section>
           <section class="fix-margin">
             <h2>Drupal 8 wants you to build better themes</h2>
-            <!--<ul>
-              <li>Twig templating system.</li>
-              <li>SMACSS-style CSS Coding Standards.</li>
-            </ul>-->
-            <aside class="notes">
-              * Maybe add an example of adding classes.
-            </aside>
           </section>
-          <section>
-            <h2>Twig</h2>
-            <ul>
-              <li>Greater seperation between logic and display</li>
-              <ul>
-                <li>More markup in templates, less in theme and pre-process functions.</li>
-              </ul>
-              <li>Easier to create cleaner and more logical markup</li>
-              <ul>
-                <li>Classy and Stable base themes.</li>
-              </ul>
-            </ul>
-            <aside class="notes">
-              * Feel like I probably need more varied examples here.
-              * Seperation between logic and view - No PHP in templates
-              * All theme() functions are twig template files.
-              * Preprocess should not be used to add classes (show example of clases being added)
-            </aside>
-          </section>
-          <section>
+					<section>
+						<h2>Cleaner Markup</h2>
+						<p>Base Themes</p>
+						<ul>
+							<li>Classy </li>
+							<li>Stable</li>
+						</ul>
+						<aside class="notes">
+							* So much effort in the past related to slimming down Drupal's markup - stuff like fences for example.<br />
+							* Classy sensible default classes and markup, improved from D7<br />
+							* Stable - only essential classes.<br />
+							* Defaults to stable as a base theme.<br />
+							* See https://www.lullabot.com/articles/a-tale-of-two-base-themes-in-drupal-8-core
+						</aside>
+					</section>
+					<section>
+						<h2>Clearer seperation between logic and display</h2>
+						<pre><code data-trim>
+{%
+	set classes = [
+		'block',
+		'block-' ~ configuration.provider|clean_class,
+		'block-' ~ plugin_id|clean_class,
+	]
+%}
+< div {{ attributes.addClass(classes) }}>
+						</code></pre>
+						<p>(From block.html.twig)</p>
+						<aside class="notes">
+							* Todo: Screen shot this.
+							* More classes and markup in templates, less in preprocessor and theme functions. So much easier to find stuff.<br />
+							* No PHP in templates<br />
+							* Don't preprocess to add classes, use Twig helper function.
+						</aside>
+					</section>
+					<section class="fix-margin">
+						<h2>Tools to Make Modular, Re-usable components</h2>
+					</section>
+					<section>
+						<h2>SMACSS and BEM</h2>
+						<ol>
+							<li>Base — CSS reset/normalize plus HTML element styling.</li>
+							<li>Layout — macro arrangement of a web page, including any grid systems.</li>
+							<li>Component — discrete, reusable UI elements.</li>
+							<li>State — styles that deal with client-side changes to components.</li>
+							<li>Theme — purely visual styling (“look-and-feel”) for a component.</li>
+						</ol>
+						<aside class="notes">
+							* TODO - Add better representation / folder structure.
+							* TODO - Incorporate BEM (additional slide?)
+							* Scalable and Modular Architecture for CSS
+							* More of a style guide than a framework.
+							* SMACCS actually uses module rather than component
+							* Maybe have some class naming examples here?
+						</aside>
+					</section>
+					<section>
             <h2>Twig Extends</h2>
             <p>field.html.twig</p>
             <img src="images/field_twig.png" />
@@ -453,22 +479,6 @@ function my_module_styleguide_alter(&$items) {
             <h2>Twig Extends</h2>
             <p>field--field-hero-header.html.twig</p>
             <img src="images/field_extends.png" />
-          </section>
-          <section>
-            <h2>SMACSS</h2>
-            <ol>
-              <li>Base — CSS reset/normalize plus HTML element styling.</li>
-              <li>Layout — macro arrangement of a web page, including any grid systems.</li>
-              <li>Component — discrete, reusable UI elements.</li>
-              <li>State — styles that deal with client-side changes to components.</li>
-              <li>Theme — purely visual styling (“look-and-feel”) for a component.</li>
-            </ol>
-            <aside class="notes">
-              * Scalable and Modular Architecture for CSS
-              * More of a style guide than a framework.
-              * SMACCS actually uses module rather than component
-              * Maybe have some class naming examples here?
-            </aside>
           </section>
           <section>
             <h2>No Style Guide Module (Yet)</h2>
