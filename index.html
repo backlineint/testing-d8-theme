@@ -537,7 +537,7 @@ function my_module_styleguide_alter(&$items) {
             <aside class="notes">
               * A number of style guide generators exist to fill this need.<br />
 							* Pattern Lab follows Atomic Design approach, but doesn't work as easily with Drupal as some other options.<br />
-							* Stylex uses Twig, which is nice.<br />
+							* Stylex uses Twig, and is better at re-usable patterns and feeding in content.<br />
 							* But I've been using KSS.
             </aside>
           </section>
@@ -592,6 +592,7 @@ function my_module_styleguide_alter(&$items) {
               * Description<br />
               * Markup - can be file location (html, handlebars, twig in the future) or inline if simple markup<br />
               * Category in Style Guide<br />
+              * You'll note that I'm not following BEM class naming conventions here, want to be on that train, but not there yet.<br />
               * Todo - Cleanup the markup here?
             </aside>
           </section>
@@ -617,40 +618,59 @@ function my_module_styleguide_alter(&$items) {
         </section>
 
         <section>
-          <section>
+          <section class="transparent">
             <h1>Testing Your Style Guide and Theme</h1>
             <aside class="notes">
-              * Behat
-              * Wraith
-              * Phantom
+              * With all of these pieces in place we now have a solid framework to test our theme.<br />
+              * I've tried a number of options, and some fit the task better than others.
             </aside>
           </section>
           <section>
             <h2>Behat</h2>
             <p>Behavior Driven Development Framework</p>
-                    <pre><code data-trim>
-                      @javascript
-                      Scenario: Footer style matches style guide
-                      Given I am an anonymous user
-                      And I am on "assessments/practice-assessments"
-                      When I am browsing using a "phone"
-                      Then "body" should have a "background-color" css value of "rgb(112, 84, 125)"
-                      And "#page" should have a "background-color" css value of "rgb(255, 255, 255)"
-                      And "footer" should have a "padding-top" css value of "50px"
-                      And "footer" should have a "padding-bottom" css value of "30px"
-                    </code></pre>
+            <pre><code data-trim>
+@javascript
+Scenario: Footer style matches style guide
+  Given I am an anonymous user
+  And I am on "assessments/practice-assessments"
+  When I am browsing using a "phone"
+  Then "body" should have a "background-color" css value of "rgb(112, 84, 125)"
+  And "#page" should have a "background-color" css value of "rgb(255, 255, 255)"
+  And "footer" should have a "padding-top" css value of "50px"
+  And "footer" should have a "padding-bottom" css value of "30px"
+            </code></pre>
+            <p><a href="https://gist.github.com/backlineint/8fedeb670e2c96a44c15">View Gist</a> for detail of steps</p>
+            <aside class="notes">
+              * Great for functional testing, not as great for testing look and feel.<br />
+              * Screenshot options are limited, especially comparison<br />
+              * Created custom rules to test computed CSS values, but have to get really specific and values can drift when things like scrollbars are introduced.
+            </aside>
           </section>
           <section>
+            <img src="images/wraith_single.png" alt="BBC Mobile Screenshot Diff" style="float:right; margin-right:25px;" />
             <h2>Wraith</h2>
             <p>Screenshot Comparison Tool</p>
-            <img src="images/wraith_single.png" />
+            <ul>
+              <li>Compares two URLs</li>
+              <li>Simple configuration</li>
+              <li>Typically 'all or nothing' diffs</li>
+            </ul>
+            <aside class="notes">
+              * Another option for a screenshot comparison tool is Wraith, created by the BBC team.<br />
+              * Full page screenshots can be can be of limited usefulness in my opinion. One diff can onbscure the rest of the page.
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/wraith_diff.png" alt="Wraith Screenshot Report"/>
+            <aside class="notes">
+              * Selenium wraith has some worthwhile enhancements like browser to browser testing, but component comparisons are still immature.<br />
+              * Summary report is cool. And this is way better than not doing visual regression testing at all.
+            </aside>
           </section>
           <section>
-            <img src="images/wraith_diff.png" />
-          </section>
-          <section>
-            <h2>Phantom CSS</h2>
+            <h3>Phantom CSS</h3>
             <p>CSS Regression Testing</p>
+            <img src="images/phantom_failure.png" alt="Phantom CSS Diff Screenshot"/>
             <ul>
               <li>PhantomJS/SlimerJS - Headless Browser</li>
               <li>CasperJS - Navigation and Scripting</li>
@@ -660,52 +680,69 @@ function my_module_styleguide_alter(&$items) {
           </section>
           <section>
             <h2>Target By Selector</h2>
-            <img src="images/phantom_failure.png" />
-                    <pre><code data-trim>
-                      casper.thenOpen(phantom.rootUrl)
-                      .then(function() {
-                      this.evaluate(function() {
-                      // Evaluate any pre-test js here
-                      });
-                      })
-                      .then(function() {
-                      phantomcss.screenshot('.view-solutions .views-row:first-child', 'Solution Teaser');
-                      });
-                    </code></pre>
-          </section>
-          <section>
-            <h2>Install</h2>
-            <p>npm install phantomcss --save-dev</p>
-            <p>or:</p>
-            <p>npm install @micahgodbolt/grunt-phantomcss --save-dev</p>
-          </section>
-          <section>
-            <h1>Demo</h1>
-          </section>
-        </section>
-
-        <section>
-          <section>
-            <h1>Chasing the dream?</h1>
+              <pre><code data-trim>
+// phantom-tests.js - in /tests subdir
+casper.thenOpen(phantom.rootUrl)
+  .then(function() {
+    this.evaluate(function() {
+      // Evaluate any pre-test js here
+    });
+  })
+  .then(function() {
+    phantomcss.screenshot('.view-solutions .views-row:first-child', 'Solution Teaser');
+  });
+            </code></pre>
+            <img src="images/solution_teaser.png" alt="Phantom Generated Screenshot of Solutions Teaser"/>
             <aside class="notes">
-              * I'm not even doing all this stuff myself
-              * Big desire is to be using twig in this process.
-              * And dream is to be able to get the 'real' drupal markup with dummy content.
-              * Chip in on Stleguide
-              * Chip in on KSS Node Twig
-              * Create something of my own.
+              * Can execute js before screenshots - chaning out fonts or content<br />
+              * Takes a named screenshot based on a selector.
             </aside>
           </section>
           <section>
-            <ul>
-              <li>Stop cutting corners in workflow.</li>
-              <li>How can we get closer to real up to date Drupal markup in Style Guide?</li>
-            </ul>
+            <h2>Install</h2>
+            <p>npm install @micahgodbolt/grunt-phantomcss --save-dev</p>
+            <p>Or:</p>
+            <p>npm install phantomcss --save-dev</p>
+            <p>(non-grunt alternative)</p>
+            <aside class="notes">
+              * Have considered using the mainline version, but the Grunt version works so well and is so easy to set up... <br />
+            </aside>
           </section>
+          <!--<section>
+            <h1>Demo</h1>
+            <aside class="notes">
+              * Show running initial screenshot test. Clear out screenshot beforehand<br />
+              * Someone else is working in the codebase, wait, why are these Headings red?  Change them back<br />
+              * See the site change, see the style guide change.<br />
+              * Run the visual regression tests and see a failure.<br />
+              * Bonus points for turning off canvas menu to white.<br />
+            </aside>
+          </section>-->
         </section>
 
         <section>
-          <h1>Questions?</h1>
+          <section class="transparent">
+            <h1>Chasing the dream?</h1>
+            <aside class="notes">
+              * So why did I call this chasing the dream? I mean, it isn't a very good title, right?<br />
+              * To some extent, I'm still trying to better incorporate this into my regular workflow - sometimes I have to cut corners - work with what I have, don't follow standards, fold this in too late, etc.<br />
+              * Things also feel a little transitional in D8 - some of the tools are different, many of them not Drupal specific.
+            </aside>
+          </section>
+          <section>
+            <h2>So what do I want?</h2>
+            <ul>
+              <li class="fragment">Better Drupal boilerplate for KSS based workflow</li>
+              <li class="fragment">TWIG everywhere</li>
+              <li class="fragment">Real Drupal markup informing style guide</li>
+              <li class="fragment">Visual regression as part of a baseline CI process</li>
+            </ul>
+          </section>
+          <aside class="notes">
+            * I want the styleguide module to exist and I want to contribute, but I'm sold on the promise of the standalone style guide.<br />
+            * I want the markup in my styleguide to be TWIG. Ideally Drupal's TWIG. KSS Node has an issue for this. Also want better component re-use.<br />
+            * I want the markup in my style guide to be as real as possible. I'd love to see it change automatically if Drupal changes.  I think there is a module in here somewhere, but I haven't figured it out yet.<br />
+          </aside>
         </section>
 
         <section>
@@ -727,7 +764,6 @@ function my_module_styleguide_alter(&$items) {
              and claim your talk (you will have to register and log in).
            </p>
          </section>
-
 
 			</div>
 
