@@ -440,6 +440,11 @@ function my_module_styleguide_alter(&$items) {
 < div {{ attributes.addClass(classes) }}>
 						</code></pre>
 						<p>(From block.html.twig)</p>
+            <pre><code data-trim>
+{% if attributes.hasClass('myClass') %}
+  {# do stuff #}
+{% endif %}
+            </code></pre>
 						<aside class="notes">
 							* More classes and markup in templates, less in preprocessor and theme functions. So much easier to find stuff and create cleaner, well organized markup.<br />
 							* No PHP in templates<br />
@@ -682,6 +687,16 @@ Scenario: Footer style matches style guide
             <p>Strengths: interactivity, easier to target components.</p>
           </section>
           <section>
+            <h2>Install</h2>
+            <p>npm install @micahgodbolt/grunt-phantomcss --save-dev</p>
+            <p>Or:</p>
+            <p>npm install phantomcss --save-dev</p>
+            <p>(non-grunt alternative)</p>
+            <aside class="notes">
+              * Have considered using the mainline version, but the Grunt version works so well and is so easy to set up... <br />
+            </aside>
+          </section>
+          <section>
             <h2>Target By Selector</h2>
               <pre><code data-trim>
 // phantom-tests.js - in /tests subdir
@@ -699,16 +714,6 @@ casper.thenOpen(phantom.rootUrl)
             <aside class="notes">
               * Can execute js before screenshots - chaning out fonts or content<br />
               * Takes a named screenshot based on a selector.
-            </aside>
-          </section>
-          <section>
-            <h2>Install</h2>
-            <p>npm install @micahgodbolt/grunt-phantomcss --save-dev</p>
-            <p>Or:</p>
-            <p>npm install phantomcss --save-dev</p>
-            <p>(non-grunt alternative)</p>
-            <aside class="notes">
-              * Have considered using the mainline version, but the Grunt version works so well and is so easy to set up... <br />
             </aside>
           </section>
           <!--<section>
@@ -740,12 +745,12 @@ casper.thenOpen(phantom.rootUrl)
               <li class="fragment">Real Drupal markup informing style guide</li>
               <li class="fragment">Visual regression as part of a baseline CI process</li>
             </ul>
+            <aside class="notes">
+              * I want the styleguide module to exist and I want to contribute, but I'm sold on the promise of the standalone style guide.<br />
+              * I want the markup in my styleguide to be TWIG. Ideally Drupal's TWIG. KSS Node has an issue for this. Also want better component re-use.<br />
+              * I want the markup in my style guide to be as real as possible. I'd love to see it change automatically if Drupal changes.  I think there is a module in here somewhere, but I haven't figured it out yet.<br />
+            </aside>
           </section>
-          <aside class="notes">
-            * I want the styleguide module to exist and I want to contribute, but I'm sold on the promise of the standalone style guide.<br />
-            * I want the markup in my styleguide to be TWIG. Ideally Drupal's TWIG. KSS Node has an issue for this. Also want better component re-use.<br />
-            * I want the markup in my style guide to be as real as possible. I'd love to see it change automatically if Drupal changes.  I think there is a module in here somewhere, but I haven't figured it out yet.<br />
-          </aside>
         </section>
 
         <section>
