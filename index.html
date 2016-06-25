@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="midcamp/black.css" id="theme">
 -->
 
-    <link rel="stylesheet" href="midcamp/midwest.css" id="theme">
+    <link rel="stylesheet" href="midcamp/teal-dark.css" id="theme">
 
     <link rel="stylesheet" href="custom.css">
 
@@ -57,12 +57,7 @@
 
       <div class="footer">
         <div class="branding--logo">
-          <span class="logo__image"><img src="midcamp/midcamp-logo.png" alt="MidCamp logo" height="55px" /></span>
-          <p class="logo__site-name">#MidCamp</p>
-        </div>
-        <div class="session--info">
-          <p class="session__title">Chasing The Dream of Style Guide Driven Development <span class="seperator">&nbsp;/&nbsp;</span></p>
-          <p class="session__presenter">Brian Perry</p>
+          <p class="logo__site-name">Chasing The Dream of Style Guide Driven Development</p>
         </div>
       </div>
 
@@ -71,8 +66,8 @@
 
         <section>
           <h1>Chasing The Dream of Style Guide Driven Development in Drupal 8</h1>
-          <h3>MidCamp 2016</h3>
-          <h3>#MidCamp</h3>
+          <h3>Brian Perry</h3>
+          <h3>Breakthrough Technologies</h3>
         </section>
 
         <section>
@@ -80,14 +75,6 @@
           <h3>@bricomedy / brianperry</h3>
           <h3>Breakthrough Technologies</h3>
           <h3>http://breaktech.com</h3>
-        </section>
-
-        <section>
-          <h1>MidCamp Sprint</h1>
-          <h2>Sunday, March 20 at 10 am</h2>
-          <h3><a href="https://2016.midcamp.org/venue-in-depth">UIC COMRB 909 S. Wolcott St</a></h3>
-          <p>(across the street from the venue)</p>
-          <p><em>Contributors of all skill sets and levels are welcome and encouraged to join us!</em></p>
         </section>
 
         <section>
@@ -243,171 +230,8 @@
 
         <section>
           <section class="transparent">
-            <h1>Drupal 7</h1>
-          </section>
-          <section class="fix-margin">
-            <!--<h1>Drupal 7</h1>-->
-            <h2>Millions of years ago when Drupal 7 was a thing...</h2>
-            <aside class="notes">
-              * D7 has some tools that help you qickly create a style guide
-            </aside>
-          </section>
-          <section class="transparent" data-background="images/style_guide_module.png" alt="Style Guide Module Project Page">
-            <aside class="notes">
-              * The style guide module lets you instantly preview common markup and drupalisims.
-            </aside>
-          </section>
-          <section class="transparent" data-background-video="videos/style_guide_demo.m4v" data-background-video-loop alt="Style Guide Module Demo Video">
-            <aside class="notes">
-              * Here's a demo - a table of links and a long scrolling page of examples.<br />
-              * Quick way to see the things you haven't styled or missed.<br />
-              * I feel like the style guide module Doesn't get the credit it deserves.<br />
-              * TODO: Add additional encodings for non-webkit browsers or convert to a gif..
-            </aside>
-          </section>
-          <section>
-            <h2>Style Guide API</h2>
-            <p>hook_styleguide()</p>
-            <p>hook_styleguide_alter()</p>
-            <aside class="notes">
-              * The style guide API implements a couple of useful hooks.
-            </aside>
-          </section>
-          <section class="fix-overflow">
-            <img src="images/dpc_styleguide.png" alt="Customized Style Guide Components" />
-            <aside class="notes">
-              * Here is an example of custom button and color swatches included in the style guide.<br />
-              * Todo - resize screenshot so I don't have to use CSS fixes.
-            </aside>
-          </section>
-          <section class="fix-overflow">
-            <img src="images/dpc_categories.png" alt="Customized Style Guide Categories" />
-            <aside class="notes">
-              * You can re-group components into categories like approved and in-progress.<br />
-              * Todo - resize screenshot so I don't have to use CSS fixes.
-            </aside>
-          </section>
-          <section>
-            <h2>hook_styleguide()</h2>
-            <pre><code data-trim>
-function my_module_styleguide() {
-  $items = array();
-
-  $items['color_primary'] = array(
-    'title' => t('02-1) Colors, Primary'),
-    'group' => t('1) Approved'),
-    'content' => '<div class="color-block primary-background"></div>'
-  );
-
-  $items['button_primary'] = array(
-    'title' => t('01-1) Buttons, Primary'),
-    'group' => t('1) Approved'),
-    'content' => markup_button_link('btn-primary', 'Donate Now')
-  );
-
-  return $items;
-}
-            </code></pre>
-            <aside class="notes">
-              * hook_styleguide() takes an array of styleguide items.<br />
-              * Can specify title and group.<br />
-              * Can include simple markup inline, or use helper functions.
-            </aside>
-          </section>
-          <section>
-            <h2>Custom Helpers for Markup</h2>
-            <pre><code data-trim>
-/**
-*  Link Button
-*
-* @param $classes
-*   STRING additional classes to be applied to button link
-* @param $text
-*   STRING link text
-*/
-function markup_button_link($classes, $text) {
-  $output = '<a class="btn ' . $classes . '" href="#" role="button">' . $text . '</a>';
-
-  return $output;
-}
-            </code></pre>
-            <p>Style guide also has helper functions like styleguide_lorem(), styleguide_image(), styleguide_pager()</p>
-            <aside class="notes">
-              * A helper function for custom button markup<br />
-              * Stylegude also has helper functions for dummy content and Drupal components.
-            </aside>
-          </section>
-          <section>
-            <h2>hook_styleguide_alter()</h2>
-            <pre><code data-trim>
-/**
-* Implements hook_styleguide_alter().
-*/
-function my_module_styleguide_alter(&$items) {
-  // Promote default styleguide items to review sections
-  $items['headings']['title'] = t('02-4) Headings');
-  $items['headings']['group'] = t('1) Approved');
-  $items['text']['title'] = t('02-5) Text Block');
-  $items['text']['group'] = t('2) In Progress');
-}
-            </code></pre>
-            <aside class="notes">
-              * Can use hook_styleguide_alter to move default style guide elements into custom categories.<br />
-              * Todo: Fix code highlighting here.
-            </aside>
-          </section>
-          <section>
-            <h2>Style Guide File Snippets Module</h2>
-            <p>Extend style guide with snippets of markup from your codebase.</p>
-            <ol>
-              <li>.html format</li>
-              <li>.inc format</li>
-            </ol>
-            <aside class="notes">
-              * Very few people seem to use this module, but it is a nice little shortcut.
-              * Especially useful for someone who doesn't typically work with custom modules.
-            </aside>
-          </section>
-          <section>
-            <h2>.html Format</h2>
-            <p>Path: SNIPPET_DIRECTORY/Navigation/Pill Navigation.html</p>
-                    <pre><code data-trim>
-<ul class="nav nav-pills" role="tablist">
-  <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
-</ul>
-                    </code></pre>
-            <img src="images/html_snippet.png" />
-            <aside class="notes">
-              * TODO - Try to extend the width of the code snippet.
-            </aside>
-          </section>
-          <section>
-            <h2>.inc Format</h2>
-            <p>Returns an array in hook_styleguide() format</p>
-                    <pre><code data-trim>
-<\?php
-  return array(
-  'title' => t('Pill Navigation'),
-  'group' => t('Navigation'),
-  'content' => '<ul class="nav nav-pills" role="tablist">
-  <li role="presentation" class="active"><a href="#">Home <span class="badge">42</span></a></li>
-  <li role="presentation"><a href="#">Profile</a></li>
-  <li role="presentation"><a href="#">Messages <span class="badge">3</span></a></li>
-  </ul>'
-);
-                    </code></pre>
-            <aside class="notes">
-              *
-              * TODO: Find a way to escape the php tag so it formats correctly.
-            </aside>
-          </section>
-        </section>
-
-        <section>
-          <section class="transparent">
-            <h1>Drupal 8</h1>
+            <!--<h1>Drupal 8</h1>-->
+            <h1>Get to the Drupals Already...</h1>
           </section>
           <section class="fix-margin">
             <h2>Drupal 8 wants you to build better themes</h2>
@@ -458,7 +282,7 @@ function my_module_styleguide_alter(&$items) {
 					<section>
 						<h2>CSS Coding Standards</h2>
 						<img src="images/smaccs.png" style="float:left" alt="Seven CSS Folder Structure"/>
-						<h3>SMACCS</h3>
+						<h3>SMACSS</h3>
 						<ol>
 							<li>Base</li>
 							<li>Layout</li>
@@ -527,26 +351,62 @@ function my_module_styleguide_alter(&$items) {
 							* Now for a specific field template I can re-define the blocks, not the entire template.
 						</aside>
           </section>
+        </section>
+
+        <section>
+          <section class="transparent">
+            <h1>Creating Your Style Guide</h1>
+          </section>
+          <section class="transparent" data-background-video="videos/style_guide_demo.m4v" data-background-video-loop alt="Style Guide Module Demo Video">
+            <aside class="notes">
+              * Here's a demo - a table of links and a long scrolling page of examples.<br />
+              * Quick way to see the things you haven't styled or missed.<br />
+              * I feel like the style guide module Doesn't get the credit it deserves.<br />
+              * TODO: Add additional encodings for non-webkit browsers or convert to a gif..
+            </aside>
+          </section>
+          <section>
+            <h2>Style Guide API</h2>
+            <p>hook_styleguide()</p>
+            <p>hook_styleguide_alter()</p>
+            <aside class="notes">
+              * The style guide API implements a couple of useful hooks.
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/dpc_styleguide.png" alt="Customized Style Guide Components" />
+            <aside class="notes">
+              * Here is an example of custom button and color swatches included in the style guide.<br />
+              * Todo - resize screenshot so I don't have to use CSS fixes.
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/dpc_categories.png" alt="Customized Style Guide Categories" />
+            <aside class="notes">
+              * You can re-group components into categories like approved and in-progress.<br />
+              * Todo - resize screenshot so I don't have to use CSS fixes.
+            </aside>
+          </section>
           <section>
             <h2>Style Guide D8 Port In-Progress</h2>
             <p>https://www.drupal.org/node/2606942</p>
-						<aside class="notes">
-							* Not ready for prime time, but follow along here (and help out!)
-						</aside>
-					</section>
+            <aside class="notes">
+              * Not ready for prime time, but follow along here (and help out!)
+            </aside>
+          </section>
           <section>
             <h2>Style Guide Generators to the Rescue</h2>
             <p>Many options</p>
             <ul>
               <li>Pattern Lab</li>
-              <li>Stylex</li>
+              <li>Hologram</li>
               <li>KSS</li>
             </ul>
             <aside class="notes">
               * A number of style guide generators exist to fill this need.<br />
-							* Pattern Lab follows Atomic Design approach, but doesn't work as easily with Drupal as some other options.<br />
-							* Stylex uses Twig, and is better at re-usable patterns and feeding in content.<br />
-							* But I've been using KSS.
+              * Pattern Lab follows Atomic Design approach, but doesn't work as easily with Drupal as some other options.<br />
+              * Hologram is a Ruby Gem<br />
+              * But I've been using KSS.
             </aside>
           </section>
           <section>
@@ -563,6 +423,7 @@ function my_module_styleguide_alter(&$items) {
           </section>
           <section>
             <h2>Install</h2>
+            <p>(There's a module for that...)</p>
             <p>npm install kss --save-dev</p>
             <p>npm install grunt-kss --save-dev</p>
           </section>
@@ -624,6 +485,10 @@ function my_module_styleguide_alter(&$items) {
             </aside>
           </section>-->
         </section>
+
+
+
+
 
         <section>
           <section class="transparent">
@@ -687,28 +552,77 @@ Scenario: Footer style matches style guide
             <p>Strengths: interactivity, easier to target components.</p>
           </section>
           <section>
+            <h3>WebdriverIO</h3>
+            <p>Selenium Bindings for NodeJS</p>
+            <img src="images/webdriverio.png" alt="WebdriverIO Robot Logo"/><br />
+            <ul>
+              <li>Selenium - Browser Automation</li>
+              <li>WebdriverIO - Node library to drive selenium</li>
+              <li>WebdriverCSS - CSS Regression Testing</li>
+            </ul>
+            <p>Strengths: interactivity, easier to target components.</p>
+          </section>
+          <section>
             <h2>Install</h2>
-            <p>npm install @micahgodbolt/grunt-phantomcss --save-dev</p>
-            <p>Or:</p>
-            <p>npm install phantomcss --save-dev</p>
-            <p>(non-grunt alternative)</p>
+            <p>npm install webdriverio@3.4.0 webdrivercss@2.0.0beta-rc1 selenium-standalone --save-dev</p>
+            <p>./node-modules/.bin/selenium-standalone install</p>
             <aside class="notes">
               * Have considered using the mainline version, but the Grunt version works so well and is so easy to set up... <br />
             </aside>
           </section>
           <section>
-            <h2>Target By Selector</h2>
+            <h2>Creating a Test</h2>
+            <p>wdio-tests.js</p>
               <pre><code data-trim>
-// phantom-tests.js - in /tests subdir
-casper.thenOpen(phantom.rootUrl)
-  .then(function() {
-    this.evaluate(function() {
-      // Evaluate any pre-test js here
-    });
-  })
-  .then(function() {
-    phantomcss.screenshot('.view-solutions .views-row:first-child', 'Solution Teaser');
+var wdio = require("webdriverio");
+var webdrivercss = require("webdrivercss");
+var assert = require("assert");
+
+var options = {
+  desiredCapabilities: {
+    browserName: "chrome"
+  }
+}
+var browser = wdio.remote(options);
+webdrivercss.init(browser, {
+  screenshotRoot: "screenshots"
+});
+
+function assertShots (err, shots) {
+  assert.ifError(err);
+
+  Object.keys(shots).forEach(function(element) {
+    shots[element].forEach(function(shot) {
+      assert.ok(shot.isWithinMisMatchTolerance, shot.message);
+    })
   });
+};
+            </code></pre>
+            <!--<img src="images/solution_teaser.png" alt="Phantom Generated Screenshot of Solutions Teaser"/>-->
+            <aside class="notes">
+              * Can execute js before screenshots - chaning out fonts or content<br />
+              * Takes a named screenshot based on a selector.
+            </aside>
+          </section>
+          <section>
+              <pre><code data-trim>
+browser
+  .init()
+  .url("http://breaktech.dev.dd:8083/")
+  .webdrivercss("solutions", [
+    {
+      name: "solution teaser",
+      elem: ".view-solutions .views-row:first-child"
+    }
+  ], assertShots)
+  .click(".fa-bars")
+  .webdrivercss("navigation", [
+    {
+      name: "Off Canvas Menu",
+      elem: ".sidebar-offcanvas"
+    }
+  ], assertShots)
+  .end();
             </code></pre>
             <img src="images/solution_teaser.png" alt="Phantom Generated Screenshot of Solutions Teaser"/>
             <aside class="notes">
@@ -738,33 +652,17 @@ casper.thenOpen(phantom.rootUrl)
             </aside>
           </section>
           <section>
-            <h2>So what do I want?</h2>
+            <h2>Still Chasing...</h2>
             <ul>
-              <li>Better Drupal boilerplate for KSS based workflow</li>
-              <li class="fragment">TWIG everywhere</li>
-              <li class="fragment">Real Drupal markup informing style guide</li>
-              <li class="fragment">Visual regression as part of a baseline CI process</li>
+              <li>My workflow - tools continue to evolve</li>
+              <li class="fragment">Component Based Rendering Initiative</li>
+              <li class="fragment">Drupal and Style Guide Sharing Markup</li>
             </ul>
             <aside class="notes">
-              * I want the styleguide module to exist and I want to contribute, but I'm sold on the promise of the standalone style guide.<br />
-              * I want the markup in my styleguide to be TWIG. Ideally Drupal's TWIG. KSS Node has an issue for this. Also want better component re-use.<br />
-              * I want the markup in my style guide to be as real as possible. I'd love to see it change automatically if Drupal changes.  I think there is a module in here somewhere, but I haven't figured it out yet.<br />
+              * Even my workflow is evolving pretty quickly - phantom vs webdriver, specific versionf ro<br />
             </aside>
           </section>
         </section>
-
-        <section>
-           <h1>Feedback</h1>
-           <h2>Session feedback:<br /><a href="https://joind.in/talk/2a022">https://joind.in/talk/2a022</a></h2>
-           <h2>Live captioning fedback:<br /><a href="http://goo.gl/WXQ5H6">http://goo.gl/WXQ5H6</a></h2>
-
-           <!--<p>
-             Replace the URL with the short URL to your talk on joind.in.
-             Go to <a href="https://joind.in/event/midcamp-2016---midwest-drupal-camp-">
-             MidCamp 2016 on joind.in</a>
-             and claim your talk (you will have to register and log in).
-           </p>-->
-         </section>
 
 			</div>
 
