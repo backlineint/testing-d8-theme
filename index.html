@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Chasing The Dream of Style Guide Driven Development in Drupal 8</title>
+		<title>Testing Your Style Guide and Theme in Drupal 8</title>
 
 		<meta name="description" content="Session Title">
 		<meta name="author" content="Presenter Name">
@@ -73,13 +73,8 @@
           <h3>@bricomedy / brianperry</h3>
           <h3>Breakthrough Technologies</h3>
           <h3>http://breaktech.com</h3>
-        </section>
-
-        <section>
           <h3>Slides:</h3>
           <h4>http://brianperryinteractive.com/testing-d8-theme</h4>
-          <h3>Code Samples:</h3>
-          <h4>https://github.com/backlineint/testing-d8-theme</h4>
         </section>
 
         <section>
@@ -99,8 +94,7 @@
             </aside>
           </section>
           <section>
-            <h3>What if I told you...</h3>
-            <h3>You could build a system to alert you of these theme regressions?</h3>
+            <h2>Stop the madness!</h2>
             <aside class="notes">
               * Maybe sham wow gif?
             </aside>
@@ -109,12 +103,16 @@
             <img src="images/visual_regression_diff.png" alt="Visual Regresison Diff for Teaser"/>
             <aside class="notes">
               * This is an example of a screenshot of a screenshot diff after a change in style.<br />
-              * * We've got all the tools we need for some life saving visual regression testing. and we'll walk all the way getting this process up on its feet.<br />
+              * We've got all the tools we need for some life saving visual regression testing. and we'll walk all the way getting this process up on its feet.<br />
               * Image Source: https://css-tricks.com/visual-regression-testing-with-phantomcss/
             </aside>
           </section>
           <section>
-            <h2>How do we get there?</h2>
+            <h2>-Hang in there image-</h2>
+            <aside class="notes">
+              * You could just turn on a few tests and call it a day, but I think you get much better mileage by thoughtfully developing a system to funnel into your testing.<br />
+              * In other words, it's going to take us a little while to get there.
+            </aside>
           </section>
         </section>
 
@@ -236,43 +234,12 @@
               * Testable - SGDD sets up a framework that makes it possible to test for visual regressions.
             </aside>
           </section>
-          <section>
-            <h2>Has this ever happened to you?</h2>
-            <img src="images/infomercial.gif" alt="Infomercial Saran Wrap Fail"/>
-            <aside class="notes">
-              * So many fun options for infomercial fail gifs...
-            </aside>
-          </section>
-          <section>
-            <p>One tiny css change causes a regression deep in the outer reaches of your site</p>
-            <p>(and, it goes unnoticed for lord knows how long)</p>
-            <aside class="notes">
-              * Maybe it's an honest mistake<br />
-              * Maybe someone new to the codebase is working in the theme layer and doesn't have the context you do.
-            </aside>
-          </section>
-          <!--<section>
-            <h2>Visual Regression Testing</h2>
-            <h4>allows your style guide tell you when you blew it</h4>
-            <aside class="notes">
-              * Consider cutting this slide
-							* We've got all the tools we need for some life saving visual regression testing.
-            </aside>
-          </section>-->
-          <section>
-            <img src="images/visual_regression_diff.png" alt="Visual Regresison Diff for Teaser"/>
-            <aside class="notes">
-              * This is an example of a screenshot of a screenshot diff after a change in style.<br />
-							* * We've got all the tools we need for some life saving visual regression testing. and we'll walk all the way getting this process up on its feet.<br />
-              * Image Source: https://css-tricks.com/visual-regression-testing-with-phantomcss/
-            </aside>
-          </section>
         </section>
 
         <section>
           <section class="transparent">
             <!--<h1>Drupal 8</h1>-->
-            <h1>Get to the Drupals Already...</h1>
+            <h1>Get to the Drupal Already...</h1>
           </section>
           <section class="fix-margin">
             <h2>Drupal 8 wants you to build better themes</h2>
@@ -684,24 +651,22 @@ browser
         </section>
 
         <section>
-          <section class="transparent">
-            <h1>Chasing the dream?</h1>
-            <aside class="notes">
-              * So why did I call this chasing the dream? I mean, it isn't a very good title, right?<br />
-              * To some extent, I'm still trying to better incorporate this into my regular workflow - sometimes I have to cut corners - work with what I have, don't follow standards, fold this in too late, etc.<br />
-              * Things also feel a little transitional in D8 - some of the tools are different, many of them not Drupal specific.
-            </aside>
-          </section>
           <section>
-            <h2>Still Chasing...</h2>
+            <h2>Challenges</h2>
             <ul>
-              <li>My workflow - tools continue to evolve</li>
-              <li class="fragment">Component Based Rendering Initiative</li>
-              <li class="fragment">Drupal and Style Guide Sharing Markup</li>
+              <li class="fragment">My workflow - tools continue to evolve</li>
+              <!--<li class="fragment">Component Based Rendering Initiative</li>-->
+              <li class="fragment">What to test - site, style guide, both?</li>
+              <li class="fragment">Sharing markup between Drupal and Style Guide</li>
             </ul>
             <aside class="notes">
               * Even my workflow is evolving pretty quickly - phantom vs webdriver, specific versionf ro<br />
             </aside>
+          </section>
+          <section class="transparent">
+            <h2>Component Based Rendering Initiative</h2>
+            <p><a href="https://www.drupal.org/node/2702061">https://www.drupal.org/node/2702061</a></p>
+            <p>drupaltwig.slack.com #components</p>
           </section>
           <section class="fix-overflow">
             <img src="images/zen.png" alt="Zen Theme"/>
@@ -713,13 +678,37 @@ browser
             <aside class="notes">
             </aside>
           </section>
-          <section class="transparent">
-            <h2>Component Based Rendering Initiative</h2>
-            <p><a href="https://www.drupal.org/node/2702061">https://www.drupal.org/node/2702061</a></p>
-            <p>drupaltwig.slack.com #components</p>
+          <section>
+            <p>Add screenshot of theme structure layout and quote field template.</p>
+            <!--<img src="images/bem.png" alt="Seven Pager Components"/>-->
+            <aside class="notes">
+              * This is pretty much enough enough to get the point accross.<br />
+              * Show a little more in a quick demo.
+            </aside>
           </section>
+          <section>
+            <h2>Where to Test (Future State)</h2>
+            <h3>Style Guide</h3>
+            <img src="images/styleguide_output.png" height="50%" width="50%" alt="KSS Solutions Teaser Output">
+            <p>Full coverage of styles and components</p>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <h2>Where to Test (Future State)</h2>
+            <h3>Site</h3>
+            <img src="images/solutions_screenshot.png" height="50%" width="50%" alt="Homepage Solutions Section">
+            <p>High-level, stategic coverage</p>
+            <aside class="notes">
+            </aside>
+          </section>
+        </section>
+
+        <section>
           <section class="transparent">
             <h1>Questions?</h1>
+            <!--<h3>Sample Repo:</h3>
+<h4>https://github.com/backlineint/testing-d8-theme</h4>-->
           </section>
         </section>
 
