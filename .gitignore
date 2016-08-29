@@ -48,9 +48,3 @@ sites/*.dd
 # IDEs #
 ########
 .idea
-
-# Supporting SASS Files
-.sass-cache
-
-# Node Modules
-node_modules
