@@ -6,16 +6,4 @@ This serves as a playground to experiment with the concepts covered in the 'Test
 
 Checkout this repository and follow the standard Drupal 8 installation process.  If installing from the Web interface you may need to manually request install.php [due to this issue](https://www.drupal.org/node/728702).
 
-### Enabling Testing Walkthrough Theme
 
-- First, enable the components module (this is required by the testing_walkthrough theme)
-- Then enable the Testing Walkthrough theme.
-
-### Todo
-
-- Export config to:
-  - Enable components module (or make it a dependency of the testing_walkthrough theme)
-  - Enable testing_walkthrough theme
-  - Set theme config
-    - Disabled logo image
-    - Disabled blocks - footer menu, main navigation, user account menu
