@@ -1,0 +1,16 @@
+name: neato_refills
+type: theme
+description: Neato sub-theme that implements bourbon neat refill components.
+base theme: neato
+core: 8.x
+libraries:
+  - neato_refills/global-styling
+  - neato_refills/global-scripts
+regions:
+  header: Header
+  featured: Featured
+  sidebar_first: 'Sidebar first'
+  content: Content
+  sidebar_second: 'Sidebar second'
+  footer_top: 'Footer Top'
+  footer_bottom: 'Footer Bottom'
