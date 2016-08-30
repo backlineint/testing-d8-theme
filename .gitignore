@@ -54,3 +54,6 @@ sites/*.dd
 
 # Node Modules
 node_modules
+
+# Bower Dependencies
+themes/*/bower_components
