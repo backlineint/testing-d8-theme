@@ -28,20 +28,19 @@ loadConfig();
  * This task generates CSS from all SCSS files and compresses them down.
  */
 gulp.task('sass', function () {
-  return gulp.src('./scss/**/*.scss')
+  return gulp.src('./source/scss/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass({
       noCache: true,
       outputStyle: "compressed",
       lineNumbers: false,
-      loadPath: './css/*',
-      sourceMap: true
+      loadPath: './source/css/*',
+      sourceMap: false
     })).on('error', function(error) {
       gutil.log(error);
       this.emit('end');
     })
-    .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('./css'))
+    .pipe(gulp.dest('./source/css'))
     .pipe(notify({
       title: "SASS Compiled",
       message: "All SASS files have been recompiled to CSS.",
@@ -122,7 +121,7 @@ gulp.task('browser-sync', function() {
  */
 gulp.task('watch', function() {
   // watch scss for changes and clear drupal theme cache on change
-  gulp.watch(['scss/**/*.scss'], ['sass', 'drush:cc']);
+  gulp.watch(['source/**/*.scss'], ['sass', 'drush:cc']);
 
   // watch js for changes and clear drupal theme cache on change
   gulp.watch(['js-src/**/*.js'], ['compress', 'drush:cc']);
