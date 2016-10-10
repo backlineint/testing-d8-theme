@@ -14,3 +14,11 @@ regions:
   sidebar_second: 'Sidebar second'
   footer_top: 'Footer Top'
   footer_bottom: 'Footer Bottom'
+
+# This section is used by the contrib module, Component Libraries. It allows you
+# to reference .twig files in your sass/ directory by using the Twig namespace:
+# @components
+component-libraries:
+  components:
+    paths:
+      - scss/components

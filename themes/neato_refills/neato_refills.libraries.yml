@@ -2,7 +2,7 @@ global-styling:
   version: VERSION
   css:
     base:
-      css/neato_refills.css: {}
+      css/style.css: {}
 global-scripts:
   version: VERSION
   js:
