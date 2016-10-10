@@ -1,0 +1,19 @@
+<div class="cards">
+  {%  if rows %}
+    {% for row in rows %}
+      {{ row.content }}
+    {% endfor %}
+  {% else %}
+    {% set k = 3 %}
+    {% for i in range(1, k) %}
+      {% include "../card/card.twig"
+        with {
+          "header": "A Card",
+          "img_src": "https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/mountains.png",
+          "img_alt": "Card Image",
+          "copy": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, officiis sunt neque facilis culpa molestiae necessitatibus delectus veniam provident."
+        }
+      %}
+    {% endfor %}
+  {% endif %}
+</div>

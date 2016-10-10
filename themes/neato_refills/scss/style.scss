@@ -39,11 +39,5 @@
 @import "components/footer";
 
 @import "components/card/card";
+@import "components/cards/cards";
 
-// TODO - move this out into it's own partial.
-
-.cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}

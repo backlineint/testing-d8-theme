@@ -10,6 +10,10 @@ var uglify = require('gulp-uglify');
 var fs = require("fs");
 var config = require("./example.config");
 
+var kss = require('kss');
+var exec = require('child_process').exec;
+
+
 /**
  * If config.js exists, load that config for overriding certain values below.
  */
@@ -118,18 +122,43 @@ gulp.task('browser-sync', function() {
 });
 
 /**
+ * @task styleguide
+ * Generate KSS styleguide
+ */
+gulp.task('styleguide', function(){
+  return kss({
+    source: 'scss',
+    destination: 'styleguide',
+    builder: 'builder/twig',
+    css: '../css/style.css'
+  });
+});
+
+/**
+ * @task clearcache
+ * Clear all Drupal caches
+ */
+gulp.task('clearcache', function (cb) {
+  exec('drush cr all', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
+/**
  * Defines the watcher task.
  */
 gulp.task('watch', function() {
   // watch scss for changes and clear drupal theme cache on change
-  gulp.watch(['scss/**/*.scss'], ['sass', 'drush:cc']);
+  gulp.watch(['scss/**/*.scss'], ['sass', 'clearcache', 'styleguide']);
 
   // watch js for changes and clear drupal theme cache on change
-  gulp.watch(['js-src/**/*.js'], ['compress', 'drush:cc']);
+  gulp.watch(['js-src/**/*.js'], ['compress', 'clearcache']);
 
   // If user has specified an override, rebuild Drupal cache
   if (!config.twig.useCache) {
-    gulp.watch(['templates/**/*.html.twig'], ['drush:cr']);
+    gulp.watch(['templates/**/*.html.twig'], ['clearcache']);
   }
 });
 
