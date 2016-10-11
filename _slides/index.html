@@ -67,14 +67,17 @@
         <section>
           <h1>Chasing The Dream of Style Guide Driven Development in Drupal 8</h1>
           <h3>Brian Perry</h3>
-          <h3>Breakthrough Technologies</h3>
+          <h3>HS2 Solutions</h3>
         </section>
 
         <section>
           <h1>Brian Perry</h1>
           <h3>@bricomedy / brianperry</h3>
-          <h3>Breakthrough Technologies</h3>
-          <h3>http://breaktech.com</h3>
+          <h3>http://www.hs2solutions.com/</h3>
+          <h4>Slides:</h4>
+          <h4>http://brianperryinteractive.com/testing-d8-theme</h4>
+            <h4>Example Repo:</h4>
+            <h4>https://github.com/backlineint/testing-d8-theme</h4>
         </section>
 
         <section>
@@ -231,7 +234,7 @@
         <section>
           <section class="transparent">
             <!--<h1>Drupal 8</h1>-->
-            <h1>Get to the Drupals Already...</h1>
+            <h1>Get to the Drupal Already...</h1>
           </section>
           <section class="fix-margin">
             <h2>Drupal 8 wants you to build better themes</h2>
@@ -323,6 +326,45 @@
 					<section>
 						<img src="images/bem.png" alt="Seven Pager Components"/>
 					</section>
+                    <section>
+                        <h2>Twig Include</h2>
+                        <p>links--node.html.twig (classy)</p>
+                        <pre><code data-trim>
+{% if links %}
+  <div class="node__links">
+    {% include "links.html.twig" %}
+  </div>
+{% endif %}
+                        </code></pre>
+                        <p>links.html.twig (classy)</p>
+                        <pre><code data-trim>
+{% if links -%}
+  {%- if heading -%}
+    {%- if heading.level -%}
+      <{{ heading.level }}{{ heading.attributes }}>{{ heading.text }}</{{ heading.level }}>
+    {%- else -%}
+      <h2{{ heading.attributes }}>{{ heading.text }}</h2>
+    {%- endif -%}
+  {%- endif -%}
+  <ul{{ attributes }}>
+    {%- for item in links -%}
+      <li{{ item.attributes }}>
+        {%- if item.link -%}
+          {{ item.link }}
+        {%- elseif item.text_attributes -%}
+          <span{{ item.text_attributes }}>{{ item.text }}</span>
+        {%- else -%}
+          {{ item.text }}
+        {%- endif -%}
+                            </li>
+                            {%- endfor -%}
+                            </ul>
+                            {%- endif %}
+                        </code></pre>
+                        <aside class="notes">
+                            * Have access to variables and can map them
+                        </aside>
+                    </section>
 					<section>
             <h2>Twig Extends</h2>
             <p>field.html.twig</p>
@@ -351,6 +393,36 @@
 							* Now for a specific field template I can re-define the blocks, not the entire template.
 						</aside>
           </section>
+            <section>
+                <h2>Twig Embed</h2>
+                <p>Combines Include and Extends</p>
+                <pre><code data-trim>
+{% embed "teasers_skeleton.twig" %}
+    {# These blocks are defined in "teasers_skeleton.twig" #}
+    {# and we override them right here:                    #}
+    {% block left_teaser %}
+        Some content for the left teaser box
+    {% endblock %}
+    {% block right_teaser %}
+        Some content for the right teaser box
+    {% endblock %}
+{% endembed %}
+                        </code></pre>
+                <aside class="notes">
+                    * Can use multiple embeds
+                </aside>
+            </section>
+            <section>
+                <h2>attach_library()</h2>
+                <p>Can now add libraries within twig templates</p>
+                <pre><code data-trim>
+{{ attach_library('contextual/drupal.contextual-links') }}
+<div>Some markup {{ message }}</div>
+                        </code></pre>
+                <p>Careful - can impact aggregation / performance</p>
+                <aside class="notes">
+                </aside>
+            </section>
         </section>
 
         <section>
@@ -366,36 +438,13 @@
             </aside>
           </section>
           <section>
-            <h2>Style Guide API</h2>
-            <p>hook_styleguide()</p>
-            <p>hook_styleguide_alter()</p>
+            <h2>Style Guide D8 Alpha Available</h2>
+            <p>https://www.drupal.org/project/styleguide</p>
             <aside class="notes">
-              * The style guide API implements a couple of useful hooks.
-            </aside>
-          </section>
-          <section class="fix-overflow">
-            <img src="images/dpc_styleguide.png" alt="Customized Style Guide Components" />
-            <aside class="notes">
-              * Here is an example of custom button and color swatches included in the style guide.<br />
-              * Todo - resize screenshot so I don't have to use CSS fixes.
-            </aside>
-          </section>
-          <section class="fix-overflow">
-            <img src="images/dpc_categories.png" alt="Customized Style Guide Categories" />
-            <aside class="notes">
-              * You can re-group components into categories like approved and in-progress.<br />
-              * Todo - resize screenshot so I don't have to use CSS fixes.
             </aside>
           </section>
           <section>
-            <h2>Style Guide D8 Port In-Progress</h2>
-            <p>https://www.drupal.org/node/2606942</p>
-            <aside class="notes">
-              * Not ready for prime time, but follow along here (and help out!)
-            </aside>
-          </section>
-          <section>
-            <h2>Style Guide Generators to the Rescue</h2>
+            <h2>Style Guide Generators</h2>
             <p>Many options</p>
             <ul>
               <li>Pattern Lab</li>
@@ -415,7 +464,7 @@
               <li>Human readable documentation syntax</li>
               <li>Any flavor of CSS</li>
               <li>Node JS implementation</li>
-              <li>Grunt plugin</li>
+              <li>Plays nicely with Grunt and Gulp</li>
             </ul>
             <aside class="notes">
               * Knyle Style Sheets
@@ -423,58 +472,49 @@
           </section>
           <section>
             <h2>Install</h2>
-            <p>(There's a module for that...)</p>
             <p>npm install kss --save-dev</p>
             <p>npm install grunt-kss --save-dev</p>
           </section>
           <section class="fix-overflow">
             <h2>Example</h2>
-            <img src="images/solutions_screenshot.png" alt="Homepage Solutions Section" />
+            <img src="images/refills_cards.jpg" alt="Cards Grid" />
             <aside class="notes">
-              * Let's look at an example, this is the solutions section on the homepage of the recently re-launched Breakthrough site.<br />
-              * It's a view with teasers of taxonomy terms.
+              * Let's look at an example - a view of articles in card view mode
             </aside>
           </section>
           <section>
             <h2>KSS Syntax</h2>
             <pre><code data-trim>
-// Solution Teaser
+// Cards
 //
-// A teaser for solutions taxonomy as displayed on the homepage
+// Multiple cards included in a grid
 //
-// Markup: kss_markup/solution_teaser.html
+// Markup: cards.twig
 //
-// Style Guide: Solutions.Teaser
-.view-solutions .views-row {
-  .views-field-field-category-icon .col-xs-3 {
-    padding: 3%;
-    border-radius: 50%;
-    background-color: $gray_light;
-    img {
-      @extend .img-responsive;
-    }
-  }
+// Style Guide: Patterns.Cards
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
             </code></pre>
             <aside class="notes">
               * Name<br />
               * Description<br />
-              * Markup - can be file location (html, handlebars, twig in the future) or inline if simple markup<br />
+              * Markup - can be file location (html, handlebars, twig) or inline if simple markup<br />
               * Category in Style Guide<br />
-              * You'll note that I'm not following BEM class naming conventions here, want to be on that train, but not there yet.<br />
-              * Todo - Cleanup the markup here?
             </aside>
           </section>
           <section>
             <h2>Build Style Guide</h2>
             <p>grunt kss</p>
             <p>or:</p>
-            <p>kss-node --source sass --destination styleguide --css css/style.css</p>
+            <p>kss-node --source sass --destination styleguide --css ../css/style.css --builder=builder/twig</p>
           </section>
           <section>
-            <img src="images/styleguide_output.png" alt="KSS Solutions Teaser Output"/>
+            <img src="images/styleguide_output.png" alt="KSS Crads Grid Output"/>
             <aside class="notes">
-              * Here's an example of KSS output for the Solutions Teaser<br />
+              * Here's an example of KSS output for the Cards Grid<br />
               * See the element included in the TOC, rendered, and the necessary markup included below.<br />
             </aside>
           </section>
@@ -485,10 +525,6 @@
             </aside>
           </section>-->
         </section>
-
-
-
-
 
         <section>
           <section class="transparent">
@@ -541,17 +577,6 @@ Scenario: Footer style matches style guide
             </aside>
           </section>
           <section>
-            <h3>Phantom CSS</h3>
-            <p>CSS Regression Testing</p>
-            <img src="images/phantom_failure.png" alt="Phantom CSS Diff Screenshot"/>
-            <ul>
-              <li>PhantomJS/SlimerJS - Headless Browser</li>
-              <li>CasperJS - Navigation and Scripting</li>
-              <li>ResembleJS - Screenshot Comparison</li>
-            </ul>
-            <p>Strengths: interactivity, easier to target components.</p>
-          </section>
-          <section>
             <h3>WebdriverIO</h3>
             <p>Selenium Bindings for NodeJS</p>
             <img src="images/webdriverio.png" alt="WebdriverIO Robot Logo"/><br />
@@ -566,6 +591,7 @@ Scenario: Footer style matches style guide
             <h2>Install</h2>
             <p>npm install webdriverio@3.4.0 webdrivercss@2.0.0beta-rc1 selenium-standalone --save-dev</p>
             <p>./node-modules/.bin/selenium-standalone install</p>
+            <p>Also requires graphicsmagick</p>
             <aside class="notes">
               * Have considered using the mainline version, but the Grunt version works so well and is so easy to set up... <br />
             </aside>
@@ -598,7 +624,6 @@ function assertShots (err, shots) {
   });
 };
             </code></pre>
-            <!--<img src="images/solution_teaser.png" alt="Phantom Generated Screenshot of Solutions Teaser"/>-->
             <aside class="notes">
               * Can execute js before screenshots - chaning out fonts or content<br />
               * Takes a named screenshot based on a selector.
@@ -607,14 +632,28 @@ function assertShots (err, shots) {
           <section>
               <pre><code data-trim>
 browser
+    .init()
+    .url("http://testing-d8-theme.dd:8083/cards")
+    .webdrivercss("cards", [
+      {
+        name: "cards",
+        elem: ".cards"
+      }
+    ], assertShots)
+    .end();
+            </code></pre>
+            <img src="images/cards.cards.baseline.png" alt="Phantom Generated Screenshot of Cards Grid"/>
+            <aside class="notes">
+              * Can execute js before screenshots - chaning out fonts or content<br />
+              * Takes a named screenshot based on a selector.
+            </aside>
+          </section>
+            <section>
+              <p>Some simple interactivity</p>
+              <pre><code data-trim>
+browser
   .init()
-  .url("http://breaktech.dev.dd:8083/")
-  .webdrivercss("solutions", [
-    {
-      name: "solution teaser",
-      elem: ".view-solutions .views-row:first-child"
-    }
-  ], assertShots)
+  .url(config.url)
   .click(".fa-bars")
   .webdrivercss("navigation", [
     {
@@ -624,12 +663,11 @@ browser
   ], assertShots)
   .end();
             </code></pre>
-            <img src="images/solution_teaser.png" alt="Phantom Generated Screenshot of Solutions Teaser"/>
-            <aside class="notes">
-              * Can execute js before screenshots - chaning out fonts or content<br />
-              * Takes a named screenshot based on a selector.
-            </aside>
-          </section>
+                <aside class="notes">
+                    * Can execute js before screenshots - chaning out fonts or content<br />
+                    * Takes a named screenshot based on a selector.
+                </aside>
+            </section>
           <!--<section>
             <h1>Demo</h1>
             <aside class="notes">
@@ -655,15 +693,16 @@ browser
             <h2>Still Chasing...</h2>
             <ul>
               <li>My workflow - tools continue to evolve</li>
-              <li class="fragment">Component Based Rendering Initiative</li>
               <li class="fragment">Drupal and Style Guide Sharing Markup</li>
+              <li class="fragment">Component Based Rendering in Drupal</li>
             </ul>
             <aside class="notes">
-              * Even my workflow is evolving pretty quickly - phantom vs webdriver, specific versionf ro<br />
+              * Even my workflow is evolving pretty quickly - phantom vs webdriver, specific versions, etc<br />
             </aside>
           </section>
           <section class="fix-overflow">
             <img src="images/zen.png" alt="Zen Theme"/>
+              <p>* Requires Components Module *</p>
             <aside class="notes">
             </aside>
           </section>
@@ -672,14 +711,45 @@ browser
             <aside class="notes">
             </aside>
           </section>
-          <section class="transparent">
-            <h2>Component Based Rendering Initiative</h2>
-            <p><a href="https://www.drupal.org/node/2702061">https://www.drupal.org/node/2702061</a></p>
-            <p>drupaltwig.slack.com #components</p>
-          </section>
-          <section class="transparent">
+            <section>
+                <h2>The Style Guide Component</h2>
+                <p>card.twig</p>
+                <pre><code data-trim>
+<div class="card">
+  <div class="card-image">
+    <img src="{{ img_src }}" alt="{{ img_alt }}">
+  </div>
+  <div class="card-header">
+    {{ header }}
+  </div>
+  <div class="card-copy">
+    <p>{{ copy }}</p>
+  </div>
+</div>
+            </code></pre>
+                <aside class="notes">
+                </aside>
+            </section>
+            <section>
+                <h2>The Drupal Template (Presenter)</h2>
+                <p>node--article--card.twig</p>
+                <pre><code data-trim>
+{%  include "@components/card/card.twig"
+  with {
+    "img_src": file_url(node.field_image.entity.fileuri),
+    "img_alt": content.field_image.0['#item'].alt,
+    "header": label,
+    "copy": content.body
+  }
+%}
+            </code></pre>
+                <aside class="notes">
+                </aside>
+            </section>
+        </section>
+
+        <section class="transparent">
             <h1>Questions?</h1>
-          </section>
         </section>
 
 			</div>
