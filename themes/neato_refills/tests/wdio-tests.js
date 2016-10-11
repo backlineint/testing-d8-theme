@@ -24,11 +24,11 @@ function assertShots (err, shots) {
 
 browser
     .init()
-    .url("http://testing-d8-theme.dd:8083/")
+    .url("http://testing-d8-theme.dd:8083/cards")
     .webdrivercss("cards", [
       {
-        name: "card",
-        elem: ".cards .card:first-child"
+        name: "cards",
+        elem: ".cards"
       }
     ], assertShots)
     .end();
