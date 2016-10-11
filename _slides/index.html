@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Chasing The Dream of Style Guide Driven Development in Drupal 8</title>
+
+		<meta name="description" content="Session Title">
+		<meta name="author" content="Presenter Name">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+<!--
+    MidCamp theme:
+		<link rel="stylesheet" href="midcamp/midwest.css" id="theme">
+-->
+
+<!--
+    Other theme variants:
+
+    <link rel="stylesheet" href="midcamp/teal-dark.css" id="theme">
+    <link rel="stylesheet" href="midcamp/teal-light.css" id="theme">
+    <link rel="stylesheet" href="midcamp/black.css" id="theme">
+-->
+
+    <link rel="stylesheet" href="midcamp/teal-dark.css" id="theme">
+
+    <link rel="stylesheet" href="custom.css">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+      <div class="footer">
+        <div class="branding--logo">
+          <p class="logo__site-name">Chasing The Dream of Style Guide Driven Development</p>
+        </div>
+      </div>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+        <section>
+          <h1>Chasing The Dream of Style Guide Driven Development in Drupal 8</h1>
+          <h3>Brian Perry</h3>
+          <h3>Breakthrough Technologies</h3>
+        </section>
+
+        <section>
+          <h1>Brian Perry</h1>
+          <h3>@bricomedy / brianperry</h3>
+          <h3>Breakthrough Technologies</h3>
+          <h3>http://breaktech.com</h3>
+        </section>
+
+        <section>
+          <section class="transparent">
+            <h1>So what exactly is Style Guide Driven Development anyway?</h1>
+          </section>
+          <section class="fix-margin">
+            <h2>Decoupling of front and back end development</h2>
+            <aside class="notes">
+              * SGDD is an approach to development that de-couples front end and back end development.<br />
+              * Look and feel can be developed before functionality actually exists.<br />
+              * Style guide components can be applied to newly developed functionality right away.
+            </aside>
+          </section>
+          <section class="fix-margin">
+            <h2>Theming doesn't have to come last</h2>
+            <aside class="notes">
+              * I'm sure many have experienced this - your site is built out, and then at the end we try to tack on theming.<br />
+            </aside>
+          </section>
+          <section class="transparent white" data-background="images/finish_success.jpg" alt="Runner Triumphantly Crossing Finish Line">
+            <h2>Perception</h2>
+            <!-- Todo - Re: Center with CSS -->
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <aside class="notes">
+              * We think it will look like this - tack on styling at the end, and the finished product will look great.
+            </aside>
+          </section>
+          <section class="transparent white" data-background="images/finish_fail.jpg" alt="Runners tripping on hurdles">
+            <h2>Reality</h2>
+            <!-- Todo - Re: Center with CSS -->
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <aside class="notes">
+              * But in reality it is more like this - some things dont get finished, and it is can be ugly and painful.
+            </aside>
+          </section>
+          <section class="transparent white" data-background="images/finish_shell.png" alt="Wario about to get hit with blue shell">
+            <h2>(Mario Kart Version)</h2>
+            <!-- Todo - Re: Center with CSS -->
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <h2>&nbsp;</h2>
+            <aside class="notes">
+              * Or the Mario Kart version - you're just about to cross the finish line, but you get hit with a blue shell.
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section class="transparent">
+            <h1>The Living Style Guide</h1>
+            <aside class="notes">
+              * Key component of SGDD is the creation and maintenence of a living style guide.
+            </aside>
+          </section>
+          <section class="transparent" data-background="images/us_style_guide.png" alt="US Web Design Standards Style Guide">
+            <aside class="notes">
+              * US Web Design Standards Style Guide.<br />
+              * Starbucks was another early example - http://www.starbucks.com/static/reference/styleguide/<br />
+              * Consider converting this to a video.
+            </aside>
+          </section>
+          <section class="transparent" data-background="images/us_style_guide_search.png" alt="US Web Design Standards Search Bar Component">
+            <aside class="notes">
+              * Search bar component
+            </aside>
+          </section>
+          <section>
+            <h2>A Living Style Guide</h2>
+            <ol>
+              <li>Is modular and re-usable</li>
+            </ol>
+          </section>
+          <section>
+            <img src="images/design_systems.png" alt="Atomic Design - design systems of components, not pages" />
+            <aside class="notes">
+              * Atomic Design is a methodology to construct design systems created by Brad Frost.<br />
+              * Design systems of components, not pages.
+            </aside>
+          </section>
+          <section>
+            <img src="images/atomic_design.png" alt="Atomic Design Overview" />
+            <aside class="notes">
+              * Atoms - basic html elements<br />
+              * Molecules - small combinations of html elements - search box for example.<br />
+              * Organisms - more complex components of molecules - header for example.<br />
+              * Templates - a full page or screen made up of components.<br />
+              * Page - An instance of a template with content in it.  Don't design individual pages.<br />
+              * The methodolgy doesn't matter to me as much as the idea of re-usable modular components.
+            </aside>
+          </section>
+          <section>
+            <h2>A Living Style Guide</h2>
+            <ol>
+              <li>Is modular and re-usable</li>
+              <li>Uses real world css and markup</li>
+              <li class="fragment">Is always kept up to date</li>
+              <li class="fragment">Is testable</li>
+            </ol>
+            <aside class="notes">
+              * The style guide should use the actual css and markup that is in production on your site.<br />
+              * As much as possible at least. The CSS should be easy, but in some cases the markup can be difficult.<br />
+              * Generate your style guide automatagically - we'll look at a few approaches.<br />
+              * Make it part of your workflow - when you update your code, update your documentation.<br />
+              * Testable - SGDD sets up a framework that makes it possible to test for visual regressions.
+            </aside>
+          </section>
+          <section>
+            <h2>Has this ever happened to you?</h2>
+            <img src="images/infomercial.gif" alt="Infomercial Saran Wrap Fail"/>
+            <aside class="notes">
+              * So many fun options for infomercial fail gifs...
+            </aside>
+          </section>
+          <section>
+            <p>One tiny css change causes a regression deep in the outer reaches of your site</p>
+            <p>(and, it goes unnoticed for lord knows how long)</p>
+            <aside class="notes">
+              * Maybe it's an honest mistake<br />
+              * Maybe someone new to the codebase is working in the theme layer and doesn't have the context you do.
+            </aside>
+          </section>
+          <!--<section>
+            <h2>Visual Regression Testing</h2>
+            <h4>allows your style guide tell you when you blew it</h4>
+            <aside class="notes">
+              * Consider cutting this slide
+							* We've got all the tools we need for some life saving visual regression testing.
+            </aside>
+          </section>-->
+          <section>
+            <img src="images/visual_regression_diff.png" alt="Visual Regresison Diff for Teaser"/>
+            <aside class="notes">
+              * This is an example of a screenshot of a screenshot diff after a change in style.<br />
+							* * We've got all the tools we need for some life saving visual regression testing. and we'll walk all the way getting this process up on its feet.<br />
+              * Image Source: https://css-tricks.com/visual-regression-testing-with-phantomcss/
+            </aside>
+          </section>
+        </section>
+
+        <section>
+          <section class="transparent">
+            <!--<h1>Drupal 8</h1>-->
+            <h1>Get to the Drupals Already...</h1>
+          </section>
+          <section class="fix-margin">
+            <h2>Drupal 8 wants you to build better themes</h2>
+          </section>
+					<section>
+						<h2>Cleaner Markup</h2>
+						<p>Base Themes</p>
+						<ul>
+							<li>Classy </li>
+							<li>Stable</li>
+						</ul>
+						<aside class="notes">
+							* So much effort in the past related to slimming down Drupal's markup - stuff like fences for example.<br />
+							* Classy sensible default classes and markup, improved from D7<br />
+							* Stable - only essential classes.<br />
+							* Defaults to stable as a base theme.<br />
+							* See https://www.lullabot.com/articles/a-tale-of-two-base-themes-in-drupal-8-core
+						</aside>
+					</section>
+					<section>
+						<h2>Clearer seperation between logic and display</h2>
+						<pre><code data-trim>
+{%
+	set classes = [
+		'block',
+		'block-' ~ configuration.provider|clean_class,
+		'block-' ~ plugin_id|clean_class,
+	]
+%}
+< div {{ attributes.addClass(classes) }}>
+						</code></pre>
+						<p>(From block.html.twig)</p>
+            <pre><code data-trim>
+{% if attributes.hasClass('myClass') %}
+  {# do stuff #}
+{% endif %}
+            </code></pre>
+						<aside class="notes">
+							* More classes and markup in templates, less in preprocessor and theme functions. So much easier to find stuff and create cleaner, well organized markup.<br />
+							* No PHP in templates<br />
+							* Don't preprocess to add classes, use Twig helper function.<br />
+							* Todo: Screen shot this.
+						</aside>
+					</section>
+					<section class="fix-margin">
+						<h2>Tools to Create Modular, Re-usable components</h2>
+					</section>
+					<section>
+						<h2>CSS Coding Standards</h2>
+						<img src="images/smaccs.png" style="float:left" alt="Seven CSS Folder Structure"/>
+						<h3>SMACSS</h3>
+						<ol>
+							<li>Base</li>
+							<li>Layout</li>
+							<li>Component (aka Module)</li>
+							<li>State</li>
+							<li>Theme (aka Skin)</li>
+						</ol>
+						<aside class="notes">
+							* Scalable and Modular Architecture for CSS<br />
+							* Approach to organizing your styles<br />
+							* Base — CSS reset/normalize plus HTML element styling.<br />
+							* Layout — macro arrangement of a web page, including any grid systems.<br />
+							* Component — discrete, reusable UI elements. SMACCS calls this modules.<br />
+							* State — styles that deal with client-side changes to components. Typically defined with the component in Drupal.<br />
+							* Theme — purely visual styling (“look-and-feel”) for a component. Drupal sometimes calls this 'skin'<br />
+						</aside>
+					</section>
+					<section>
+						<h2>BEM</h2>
+						<p>Naming convention for components</p>
+						<ul>
+							<li>Block</li>
+							<li>Element</li>
+							<li>Modifier</li>
+						</ul>
+						<pre><code data-trim>
+.block {}
+.block__element {}
+.block--modifier {}
+.block__element--modifier {}
+						</code></pre>
+						<aside class="notes">
+							* Block - object (component) on your website<br />
+							* Element - Sub-component of a block that performs a particular function. Should only make sense within the context of the block<br />
+							* Modifier - Variations of block or element
+						</aside>
+					</section>
+					<section>
+						<img src="images/bem.png" alt="Seven Pager Components"/>
+					</section>
+					<section>
+            <h2>Twig Extends</h2>
+            <p>field.html.twig</p>
+            <img src="images/field_twig.png" alt="Default field.html.twig"/>
+						<aside class="notes">
+							* Twig allows you to extend templates, which can really help with re-use.<br />
+							* Imagine you want to wrap the field in a different tag. In D7 if you wanted to do this in the template, you'd have to create a copy of the entire field template<br />
+							* Todo: fix image overflow or use code.
+						</aside>
+          </section>
+          <section>
+            <h2>Twig Blocks</h2>
+            <p>Custom field.html.twig</p>
+            <img src="images/field_twig_block.png" alt="Custom Field Template With Blocks" />
+						<aside class="notes">
+							* If you define elements as blocks, you can extend them.<br />
+							* Here I've created a custom version of the field template where I've defined blocks.<br />
+							* Todo: fix image overflow or use code.
+						</aside>
+          </section>
+          <section>
+            <h2>Twig Extends</h2>
+            <p>field--field-hero-header.html.twig</p>
+            <img src="images/field_extends.png" alt="Extended Field Template"/>
+						<aside class="notes">
+							* Now for a specific field template I can re-define the blocks, not the entire template.
+						</aside>
+          </section>
+        </section>
+
+        <section>
+          <section class="transparent">
+            <h1>Creating Your Style Guide</h1>
+          </section>
+          <section class="transparent" data-background-video="videos/style_guide_demo.m4v" data-background-video-loop alt="Style Guide Module Demo Video">
+            <aside class="notes">
+              * Here's a demo - a table of links and a long scrolling page of examples.<br />
+              * Quick way to see the things you haven't styled or missed.<br />
+              * I feel like the style guide module Doesn't get the credit it deserves.<br />
+              * TODO: Add additional encodings for non-webkit browsers or convert to a gif..
+            </aside>
+          </section>
+          <section>
+            <h2>Style Guide API</h2>
+            <p>hook_styleguide()</p>
+            <p>hook_styleguide_alter()</p>
+            <aside class="notes">
+              * The style guide API implements a couple of useful hooks.
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/dpc_styleguide.png" alt="Customized Style Guide Components" />
+            <aside class="notes">
+              * Here is an example of custom button and color swatches included in the style guide.<br />
+              * Todo - resize screenshot so I don't have to use CSS fixes.
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/dpc_categories.png" alt="Customized Style Guide Categories" />
+            <aside class="notes">
+              * You can re-group components into categories like approved and in-progress.<br />
+              * Todo - resize screenshot so I don't have to use CSS fixes.
+            </aside>
+          </section>
+          <section>
+            <h2>Style Guide D8 Port In-Progress</h2>
+            <p>https://www.drupal.org/node/2606942</p>
+            <aside class="notes">
+              * Not ready for prime time, but follow along here (and help out!)
+            </aside>
+          </section>
+          <section>
+            <h2>Style Guide Generators to the Rescue</h2>
+            <p>Many options</p>
+            <ul>
+              <li>Pattern Lab</li>
+              <li>Hologram</li>
+              <li>KSS</li>
+            </ul>
+            <aside class="notes">
+              * A number of style guide generators exist to fill this need.<br />
+              * Pattern Lab follows Atomic Design approach, but doesn't work as easily with Drupal as some other options.<br />
+              * Hologram is a Ruby Gem<br />
+              * But I've been using KSS.
+            </aside>
+          </section>
+          <section>
+            <h2>KSS</h2>
+            <ul>
+              <li>Human readable documentation syntax</li>
+              <li>Any flavor of CSS</li>
+              <li>Node JS implementation</li>
+              <li>Grunt plugin</li>
+            </ul>
+            <aside class="notes">
+              * Knyle Style Sheets
+            </aside>
+          </section>
+          <section>
+            <h2>Install</h2>
+            <p>(There's a module for that...)</p>
+            <p>npm install kss --save-dev</p>
+            <p>npm install grunt-kss --save-dev</p>
+          </section>
+          <section class="fix-overflow">
+            <h2>Example</h2>
+            <img src="images/solutions_screenshot.png" alt="Homepage Solutions Section" />
+            <aside class="notes">
+              * Let's look at an example, this is the solutions section on the homepage of the recently re-launched Breakthrough site.<br />
+              * It's a view with teasers of taxonomy terms.
+            </aside>
+          </section>
+          <section>
+            <h2>KSS Syntax</h2>
+            <pre><code data-trim>
+// Solution Teaser
+//
+// A teaser for solutions taxonomy as displayed on the homepage
+//
+// Markup: kss_markup/solution_teaser.html
+//
+// Style Guide: Solutions.Teaser
+.view-solutions .views-row {
+  .views-field-field-category-icon .col-xs-3 {
+    padding: 3%;
+    border-radius: 50%;
+    background-color: $gray_light;
+    img {
+      @extend .img-responsive;
+    }
+  }
+}
+            </code></pre>
+            <aside class="notes">
+              * Name<br />
+              * Description<br />
+              * Markup - can be file location (html, handlebars, twig in the future) or inline if simple markup<br />
+              * Category in Style Guide<br />
+              * You'll note that I'm not following BEM class naming conventions here, want to be on that train, but not there yet.<br />
+              * Todo - Cleanup the markup here?
+            </aside>
+          </section>
+          <section>
+            <h2>Build Style Guide</h2>
+            <p>grunt kss</p>
+            <p>or:</p>
+            <p>kss-node --source sass --destination styleguide --css css/style.css</p>
+          </section>
+          <section>
+            <img src="images/styleguide_output.png" alt="KSS Solutions Teaser Output"/>
+            <aside class="notes">
+              * Here's an example of KSS output for the Solutions Teaser<br />
+              * See the element included in the TOC, rendered, and the necessary markup included below.<br />
+            </aside>
+          </section>
+          <!--<section>
+            <h2>Demo</h2>
+            <aside class="notes">
+              * Show example of changing the style of H2s and seeing the result reflected in the styleguide.
+            </aside>
+          </section>-->
+        </section>
+
+
+
+
+
+        <section>
+          <section class="transparent">
+            <h1>Testing Your Style Guide and Theme</h1>
+            <aside class="notes">
+              * With all of these pieces in place we now have a solid framework to test our theme.<br />
+              * I've tried a number of options, and some fit the task better than others.
+            </aside>
+          </section>
+          <section>
+            <h2>Behat</h2>
+            <p>Behavior Driven Development Framework</p>
+            <pre><code data-trim>
+@javascript
+Scenario: Footer style matches style guide
+  Given I am an anonymous user
+  And I am on "assessments/practice-assessments"
+  When I am browsing using a "phone"
+  Then "body" should have a "background-color" css value of "rgb(112, 84, 125)"
+  And "#page" should have a "background-color" css value of "rgb(255, 255, 255)"
+  And "footer" should have a "padding-top" css value of "50px"
+  And "footer" should have a "padding-bottom" css value of "30px"
+            </code></pre>
+            <p><a href="https://gist.github.com/backlineint/8fedeb670e2c96a44c15">View Gist</a> for detail of steps</p>
+            <aside class="notes">
+              * Great for functional testing, not as great for testing look and feel.<br />
+              * Screenshot options are limited, especially comparison<br />
+              * Created custom rules to test computed CSS values, but have to get really specific and values can drift when things like scrollbars are introduced.
+            </aside>
+          </section>
+          <section>
+            <img src="images/wraith_single.png" alt="BBC Mobile Screenshot Diff" style="float:right; margin-right:25px;" />
+            <h2>Wraith</h2>
+            <p>Screenshot Comparison Tool</p>
+            <ul>
+              <li>Compares two URLs</li>
+              <li>Simple configuration</li>
+              <li>Typically 'all or nothing' diffs</li>
+            </ul>
+            <aside class="notes">
+              * Another option for a screenshot comparison tool is Wraith, created by the BBC team.<br />
+              * Full page screenshots can be can be of limited usefulness in my opinion. One diff can onbscure the rest of the page.
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/wraith_diff.png" alt="Wraith Screenshot Report"/>
+            <aside class="notes">
+              * Selenium wraith has some worthwhile enhancements like browser to browser testing, but component comparisons are still immature.<br />
+              * Summary report is cool. And this is way better than not doing visual regression testing at all.
+            </aside>
+          </section>
+          <section>
+            <h3>Phantom CSS</h3>
+            <p>CSS Regression Testing</p>
+            <img src="images/phantom_failure.png" alt="Phantom CSS Diff Screenshot"/>
+            <ul>
+              <li>PhantomJS/SlimerJS - Headless Browser</li>
+              <li>CasperJS - Navigation and Scripting</li>
+              <li>ResembleJS - Screenshot Comparison</li>
+            </ul>
+            <p>Strengths: interactivity, easier to target components.</p>
+          </section>
+          <section>
+            <h3>WebdriverIO</h3>
+            <p>Selenium Bindings for NodeJS</p>
+            <img src="images/webdriverio.png" alt="WebdriverIO Robot Logo"/><br />
+            <ul>
+              <li>Selenium - Browser Automation</li>
+              <li>WebdriverIO - Node library to drive selenium</li>
+              <li>WebdriverCSS - CSS Regression Testing</li>
+            </ul>
+            <p>Strengths: interactivity, easier to target components.</p>
+          </section>
+          <section>
+            <h2>Install</h2>
+            <p>npm install webdriverio@3.4.0 webdrivercss@2.0.0beta-rc1 selenium-standalone --save-dev</p>
+            <p>./node-modules/.bin/selenium-standalone install</p>
+            <aside class="notes">
+              * Have considered using the mainline version, but the Grunt version works so well and is so easy to set up... <br />
+            </aside>
+          </section>
+          <section>
+            <h2>Creating a Test</h2>
+            <p>wdio-tests.js</p>
+              <pre><code data-trim>
+var wdio = require("webdriverio");
+var webdrivercss = require("webdrivercss");
+var assert = require("assert");
+
+var options = {
+  desiredCapabilities: {
+    browserName: "chrome"
+  }
+}
+var browser = wdio.remote(options);
+webdrivercss.init(browser, {
+  screenshotRoot: "screenshots"
+});
+
+function assertShots (err, shots) {
+  assert.ifError(err);
+
+  Object.keys(shots).forEach(function(element) {
+    shots[element].forEach(function(shot) {
+      assert.ok(shot.isWithinMisMatchTolerance, shot.message);
+    })
+  });
+};
+            </code></pre>
+            <!--<img src="images/solution_teaser.png" alt="Phantom Generated Screenshot of Solutions Teaser"/>-->
+            <aside class="notes">
+              * Can execute js before screenshots - chaning out fonts or content<br />
+              * Takes a named screenshot based on a selector.
+            </aside>
+          </section>
+          <section>
+              <pre><code data-trim>
+browser
+  .init()
+  .url("http://breaktech.dev.dd:8083/")
+  .webdrivercss("solutions", [
+    {
+      name: "solution teaser",
+      elem: ".view-solutions .views-row:first-child"
+    }
+  ], assertShots)
+  .click(".fa-bars")
+  .webdrivercss("navigation", [
+    {
+      name: "Off Canvas Menu",
+      elem: ".sidebar-offcanvas"
+    }
+  ], assertShots)
+  .end();
+            </code></pre>
+            <img src="images/solution_teaser.png" alt="Phantom Generated Screenshot of Solutions Teaser"/>
+            <aside class="notes">
+              * Can execute js before screenshots - chaning out fonts or content<br />
+              * Takes a named screenshot based on a selector.
+            </aside>
+          </section>
+          <!--<section>
+            <h1>Demo</h1>
+            <aside class="notes">
+              * Show running initial screenshot test. Clear out screenshot beforehand<br />
+              * Someone else is working in the codebase, wait, why are these Headings red?  Change them back<br />
+              * See the site change, see the style guide change.<br />
+              * Run the visual regression tests and see a failure.<br />
+              * Bonus points for turning off canvas menu to white.<br />
+            </aside>
+          </section>-->
+        </section>
+
+        <section>
+          <section class="transparent">
+            <h1>Chasing the dream?</h1>
+            <aside class="notes">
+              * So why did I call this chasing the dream? I mean, it isn't a very good title, right?<br />
+              * To some extent, I'm still trying to better incorporate this into my regular workflow - sometimes I have to cut corners - work with what I have, don't follow standards, fold this in too late, etc.<br />
+              * Things also feel a little transitional in D8 - some of the tools are different, many of them not Drupal specific.
+            </aside>
+          </section>
+          <section>
+            <h2>Still Chasing...</h2>
+            <ul>
+              <li>My workflow - tools continue to evolve</li>
+              <li class="fragment">Component Based Rendering Initiative</li>
+              <li class="fragment">Drupal and Style Guide Sharing Markup</li>
+            </ul>
+            <aside class="notes">
+              * Even my workflow is evolving pretty quickly - phantom vs webdriver, specific versionf ro<br />
+            </aside>
+          </section>
+          <section class="fix-overflow">
+            <img src="images/zen.png" alt="Zen Theme"/>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section>
+            <img src="images/mvp.png" alt="MVC vs MVP diagram"/>
+            <aside class="notes">
+            </aside>
+          </section>
+          <section class="transparent">
+            <h2>Component Based Rendering Initiative</h2>
+            <p><a href="https://www.drupal.org/node/2702061">https://www.drupal.org/node/2702061</a></p>
+            <p>drupaltwig.slack.com #components</p>
+          </section>
+          <section class="transparent">
+            <h1>Questions?</h1>
+          </section>
+        </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'none', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

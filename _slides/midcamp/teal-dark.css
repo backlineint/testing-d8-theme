@@ -1,0 +1,55 @@
+@import url(../lib/font/source-sans-pro/source-sans-pro.css);
+@import url("midcamp-footer.css");
+
+body {
+  background: #096f8f;
+  font-family: 'Source Sans Pro', Helvetica, sans-serif;
+}
+
+.reveal {
+  color: #fff;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  letter-spacing: normal;
+  color: #fff;
+  text-transform: none;
+  text-shadow: none;
+  word-wrap: break-word; }
+
+.reveal a {
+  color: #dc0a21;
+  padding: 0 .25em;
+  background: #eaf8fb;
+  text-decoration: none;
+  -webkit-transition: color 0.15s ease;
+  -moz-transition: color 0.15s ease;
+  transition: color 0.15s ease; }
+
+.reveal a:hover {
+  color: #ed808b;
+  text-shadow: none;
+  border: none; }
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+.reveal .controls .navigate-left, .reveal .controls .navigate-left.enabled {
+  border-right-color: #eaf8fb;
+}
+
+.reveal .controls .navigate-right, .reveal .controls .navigate-right.enabled {
+  border-left-color: #eaf8fb;
+}
+
+.reveal .controls .navigate-up, .reveal .controls .navigate-up.enabled {
+  border-bottom-color: #eaf8fb;
+}
+
+.reveal .controls .navigate-down, .reveal .controls .navigate-down.enabled {
+  border-top-color: #eaf8fb;
+}
+
+.reveal .progress span {
+  background: #eaf8fb;
+}

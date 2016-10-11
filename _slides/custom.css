@@ -1,0 +1,16 @@
+/* Todo - maybe we need to wash out the background a little more if we're going to use this theme */
+.transparent {
+  background-color: transparent !important;
+}
+.white h2 {
+  color: white;
+}
+.fix-margin h2 {
+  margin-top: 25px !important;
+}
+.fix-overflow {
+  left: -2%;
+}
+.fix-overflow img {
+  max-width: 85% !important;
+}
