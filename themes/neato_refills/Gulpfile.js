@@ -160,6 +160,10 @@ gulp.task('watch', function() {
   if (!config.twig.useCache) {
     gulp.watch(['templates/**/*.html.twig'], ['clearcache']);
   }
+
+  // Watch for changes in component templates as well
+  gulp.watch(['scss/**/*.twig'], ['clearcache', 'styleguide']);
+
 });
 
 gulp.task('default', ['watch']);
