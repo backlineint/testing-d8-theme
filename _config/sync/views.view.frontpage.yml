@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.card_full
+    - core.entity_view_mode.node.card
     - core.entity_view_mode.node.rss
   module:
     - node
@@ -196,7 +196,7 @@ display:
         type: 'entity:node'
         options:
           relationship: none
-          view_mode: card_full
+          view_mode: card
       sorts:
         sticky:
           admin_label: ''
